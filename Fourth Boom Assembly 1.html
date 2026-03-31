@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fourth Boom Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<script>
+const parts = [
+  {text:"Fourth Boom Weldment", phonetic:"/fɔːrθ buːm ˈwɛldmənt/", cn:"四节臂焊接体", desc:"四节臂的焊接结构件", words:[
+    {w:"Fourth", cn:"第四", phonetic:"/fɔːrθ/"},
+    {w:"Boom", cn:"臂架", phonetic:"/buːm/"},
+    {w:"Weldment", cn:"焊接体", phonetic:"/ˈwɛldmənt/"}
+  ]},
+  {text:"Sliding Block", phonetic:"/ˈslaɪdɪŋ blɒk/", cn:"滑块", desc:"用于导向或支撑运动的滑块", words:[
+    {w:"Sliding", cn:"滑动", phonetic:"/ˈslaɪdɪŋ/"},
+    {w:"Block", cn:"块", phonetic:"/blɒk/"}
+  ]},
+  {text:"Spacer", phonetic:"/ˈspeɪsər/", cn:"垫片", desc:"用于分隔或调节间距的板片"},
+  {text:"Bolt", phonetic:"/boʊlt/", cn:"螺栓", desc:"用于连接和紧固零部件的紧固件"},
+  {text:"Wear Pad", phonetic:"/wɛr pæd/", cn:"滑块组件", desc:"用于减摩和支撑的滑块组件", words:[
+    {w:"Wear", cn:"磨损", phonetic:"/wɛr/"},
+    {w:"Pad", cn:"垫块", phonetic:"/pæd/"}
+  ]},
+  {text:"Plate", phonetic:"/pleɪt/", cn:"弯板", desc:"用于支撑或固定零部件的板件"},
+  {text:"Washer", phonetic:"/ˈwɒʃər/", cn:"垫圈", desc:"用于分散压力、防止松动的辅助件"},
+  {text:"Cushion", phonetic:"/ˈkʊʃən/", cn:"垫片", desc:"用于缓冲或减震的垫片"}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`<span class="word btn" onclick="speak('${w.w}')">🔊 ${w.w} <span class="phonetic">${w.phonetic}</span> <span class="small">${w.cn}</span></span>`).join("");
+    }
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text} <span class="phonetic">${p.phonetic}</span> <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+
+</div>
+</body>
+</html>
