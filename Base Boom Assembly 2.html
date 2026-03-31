@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<script>
+const parts = [
+  {text:"Spring Washer", phonetic:"/sprɪŋ ˈwɒʃər/", cn:"弹簧垫圈", desc:"用于防止松动的弹性垫圈", words:[
+    {w:"Spring", cn:"弹簧", phonetic:"/sprɪŋ/"},
+    {w:"Washer", cn:"垫圈", phonetic:"/ˈwɒʃər/"}
+  ]},
+  {text:"Bolt", phonetic:"/boʊlt/", cn:"螺栓", desc:"用于连接和紧固零部件的紧固件"},
+  {text:"Cushion", phonetic:"/ˈkʊʃən/", cn:"垫片", desc:"用于缓冲或减震的垫片"},
+  {text:"Block", phonetic:"/blɒk/", cn:"挡块", desc:"用于限制位置或运动的块状件"},
+  {text:"Self-Lubricating Bearing", phonetic:"/self ˈluːbrɪˌkeɪtɪŋ ˈbɛərɪŋ/", cn:"自润滑轴承", desc:"无需额外润滑即可运转的轴承", words:[
+    {w:"Self-Lubricating", cn:"自润滑", phonetic:"/self ˈluːbrɪˌkeɪtɪŋ/"},
+    {w:"Bearing", cn:"轴承", phonetic:"/ˈbɛərɪŋ/"}
+  ]},
+  {text:"Washer", phonetic:"/ˈwɒʃər/", cn:"垫圈", desc:"用于分散压力、防止松动的辅助件"},
+  {text:"Pin", phonetic:"/pɪn/", cn:"销", desc:"用于连接或定位的销类零件"},
+  {text:"Junction Box", phonetic:"/ˈdʒʌŋkʃən bɒks/", cn:"线盒", desc:"用于电气线路连接和保护的盒体", words:[
+    {w:"Junction", cn:"连接", phonetic:"/ˈdʒʌŋkʃən/"},
+    {w:"Box", cn:"盒", phonetic:"/bɒks/"}
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`<span class="word btn" onclick="speak('${w.w}')">🔊 ${w.w} <span class="phonetic">${w.phonetic}</span> <span class="small">${w.cn}</span></span>`).join("");
+    }
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text} <span class="phonetic">${p.phonetic}</span> <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+
+</div>
+</body>
+</html>
