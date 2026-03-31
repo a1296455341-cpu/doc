@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parts Learning</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<script>
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+</script>
+
+<script>
+const dict = {
+Magnet:["/ˈmæɡnɪt/","磁铁"],
+Head:["/hɛd/","头部"],
+Nut:["/nʌt/","螺母"],
+Inspection:["/ɪnˈspekʃən/","检测"],
+Cable:["/ˈkeɪbl/","拉线"],
+Washer:["/ˈwɒʃər/","垫圈"]
+};
+
+function renderWords(words){
+  return words.map(w=>`
+    <span class="word btn" onclick="speak('${w}')">🔊 ${w}
+      <span class="small">${dict[w]?.[0]||""} ${dict[w]?.[1]||""}</span>
+    </span>
+  `).join("");
+}
+
+function addItem(text, phonetic, cn, desc){
+  const words = text.replace("-", " ").split(" ");
+  document.write(`
+  <div class="item">
+    <div class="title btn" onclick="speak('${text}')">
+      🔊 ${text} <span class="phonetic">${phonetic}</span>
+      <span class="small">${cn}</span>
+    </div>
+    <div class="desc">${desc}</div>
+    ${words.length>1 ? renderWords(words) : ""}
+  </div>
+  `);
+}
+</script>
+
+<script>
+addItem("Magnet Head","/ˈmæɡnɪt hɛd/","磁吸头","用于吸附金属或固定零件的磁性部件");
+addItem("Nut","/nʌt/","螺母","与螺栓配合使用的紧固件");
+addItem("Inspection Cable","/ɪnˈspekʃən ˈkeɪbl/","拉线","用于检测或传递信号的拉线组件");
+addItem("Washer","/ˈwɒʃər/","垫圈","用于分散压力、防止松动的辅助件");
+</script>
+
+</div>
+</body>
+</html>
