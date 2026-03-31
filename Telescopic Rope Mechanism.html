@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sheave Assembly Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:700px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<script>
+const parts = [
+  {text:"Sheave", phonetic:"/ʃiːv/", cn:"滑轮组件", desc:"用于改变钢丝绳方向的轮组件"},
+  {text:"Steel Wire Rope", phonetic:"/stiːl waɪər roʊp/", cn:"钢丝绳", desc:"用于提升或牵引的钢制绳索", words:[
+    {w:"Steel", cn:"钢", phonetic:"/stiːl/"},
+    {w:"Wire", cn:"丝", phonetic:"/waɪər/"},
+    {w:"Rope", cn:"绳", phonetic:"/roʊp/"}
+  ]},
+  {text:"Washer", phonetic:"/ˈwɒʃər/", cn:"垫圈", desc:"用于分散压力、防止松动的辅助件"},
+  {text:"Nut", phonetic:"/nʌt/", cn:"螺母", desc:"用于与螺栓配合紧固的零件"},
+  {text:"Sheave Assembly", phonetic:"/ʃiːv əˈsɛmbli/", cn:"滑轮总成", desc:"滑轮及相关零件组合而成的总成", words:[
+    {w:"Sheave", cn:"滑轮", phonetic:"/ʃiːv/"},
+    {w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+  ]},
+  {text:"Block", phonetic:"/blɒk/", cn:"挡块", desc:"用于限制零件位置的块状件"},
+  {text:"Bolt", phonetic:"/boʊlt/", cn:"螺栓", desc:"用于连接和紧固零部件的常见紧固件"},
+  {text:"Sheave", phonetic:"/ʃiːv/", cn:"导向轮", desc:"引导钢丝绳运行的轮组件"},
+  {text:"Steel Wire", phonetic:"/stiːl waɪər/", cn:"钢丝绳", desc:"用于传递力的钢丝绳索", words:[
+    {w:"Steel", cn:"钢", phonetic:"/stiːl/"},
+    {w:"Wire", cn:"丝", phonetic:"/waɪər/"}
+  ]},
+  {text:"Pin", phonetic:"/pɪn/", cn:"销", desc:"用于固定零件的销钉"}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`<span class="word btn" onclick="speak('${w.w}')">🔊 ${w.w} <span class="phonetic">${w.phonetic}</span> <span class="small">${w.cn}</span></span>`).join("");
+    }
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text} <span class="phonetic">${p.phonetic}</span> <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+
+</div>
+</body>
+</html>
