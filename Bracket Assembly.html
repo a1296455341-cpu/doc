@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parts Learning</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<script>
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+</script>
+
+<script>
+const dict = {
+Bolt:["/boʊlt/","螺栓"],
+Spring:["/sprɪŋ/","弹簧"],
+Washer:["/ˈwɒʃər/","垫圈"],
+Bracket:["/ˈbrækɪt/","支架"],
+Self:["/self/","自"],
+Locking:["/ˈlɒkɪŋ/","锁紧"],
+Nut:["/nʌt/","螺母"],
+Bumper:["/ˈbʌmpər/","缓冲"],
+Liner:["/ˈlaɪnər/","衬板"],
+Plates:["/pleɪts/","板"],
+Screw:["/skruː/","螺钉"],
+Connection:["/kəˈnɛkʃən/","连接"],
+Support:["/səˈpɔːrt/","支架"],
+Lubricating:["/ˈluːbrɪˌkeɪtɪŋ/","润滑"],
+Bearing:["/ˈbɛərɪŋ/","轴承"],
+Thrust:["/θrʌst/","推力"],
+Keeper:["/ˈkiːpər/","销"],
+Pin:["/pɪn/","销钉"],
+Rotating:["/ˈroʊteɪtɪŋ/","旋转"],
+Shaft:["/ʃæft/","轴"],
+Weldment:["/ˈweldmənt/","焊接体"],
+Cushion:["/ˈkʊʃən/","垫块"],
+Block:["/blɒk/","块"]
+};
+
+function renderWords(words){
+  return words.map(w=>`
+    <span class="word btn" onclick="speak('${w}')">🔊 ${w}
+      <span class="small">${dict[w]?.[0]||""} ${dict[w]?.[1]||""}</span>
+    </span>
+  `).join("");
+}
+
+function addItem(text, phonetic, cn, desc){
+  const words = text.replace("-", " ").split(" ");
+  document.write(`
+  <div class="item">
+    <div class="title btn" onclick="speak('${text}')">
+      🔊 ${text} <span class="phonetic">${phonetic}</span>
+      <span class="small">${cn}</span>
+    </div>
+    <div class="desc">${desc}</div>
+    ${words.length>1 ? renderWords(words) : ""}
+  </div>
+  `);
+}
+</script>
+
+<script>
+addItem("Bolt","/boʊlt/","螺栓","用于连接和紧固零部件的常见紧固件");
+addItem("Spring Washer","/sprɪŋ ˈwɒʃər/","弹簧垫圈","用于防止松动的弹性垫圈");
+addItem("Washer","/ˈwɒʃər/","垫圈","用于分散压力、防止松动的辅助件");
+addItem("Bracket","/ˈbrækɪt/","支架","用于支撑和固定其他零部件的结构件");
+addItem("Self-Locking Nut","/self ˈlɒkɪŋ nʌt/","自锁螺母","能够防止松动的螺母");
+addItem("Nut","/nʌt/","螺母","与螺栓配合使用的紧固件");
+addItem("Bumper Liner Plates","/ˈbʌmpər ˈlaɪnər pleɪts/","缓冲垫板","用于缓冲冲击、保护结构的板材组件");
+addItem("Screw","/skruː/","螺钉","用于紧固连接的小型螺纹件");
+addItem("Connection Support","/kəˈnɛkʃən səˈpɔːrt/","连接架","用于固定和连接零部件的支撑架");
+addItem("Self-Lubricating Bearing","/self ˈluːbrɪˌkeɪtɪŋ ˈbɛərɪŋ/","自润滑轴承","无需额外润滑即可运转的轴承");
+addItem("Thrust Washer","/θrʌst ˈwɒʃər/","止推垫片","用于限制轴向位移、防止磨损的垫片");
+addItem("Keeper Pin","/ˈkiːpər pɪn/","销轴","用于固定零件的销钉");
+addItem("Rotating Shaft","/ˈroʊteɪtɪŋ ʃæft/","转轴","用于旋转传动的轴件");
+addItem("Weldment Support","/ˈweldmənt səˈpɔːrt/","托架焊接体","通过焊接制成的托架结构件");
+addItem("Cushion Block","/ˈkʊʃən blɒk/","垫块","用于支撑或调节高度的块状零件");
+</script>
+
+</div>
+</body>
+</html>
