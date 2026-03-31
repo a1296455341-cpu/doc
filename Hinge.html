@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mounting Plate for Hinge Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:700px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<script>
+const parts = [
+  {text:"Mounting Plate For Hinge", phonetic:"/ˈmaʊntɪŋ pleɪt fɔːr hɪndʒ/", cn:"铰链安装板", desc:"用于固定铰链的安装板", words:[
+    {w:"Mounting", cn:"安装", phonetic:"/ˈmaʊntɪŋ/"},
+    {w:"Plate", cn:"板", phonetic:"/pleɪt/"},
+    {w:"For", cn:"用于", phonetic:"/fɔːr/"},
+    {w:"Hinge", cn:"铰链", phonetic:"/hɪndʒ/"}
+  ]},
+  {text:"Shaft", phonetic:"/ʃæft/", cn:"销轴", desc:"用于旋转或固定的轴类零件"},
+  {text:"Cotter Pin", phonetic:"/ˈkɒtər pɪn/", cn:"销", desc:"用于固定销轴或其他零件的销钉", words:[
+    {w:"Cotter", cn:"销", phonetic:"/ˈkɒtər/"},
+    {w:"Pin", cn:"钉", phonetic:"/pɪn/"}
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`<span class="word btn" onclick="speak('${w.w}')">🔊 ${w.w} <span class="phonetic">${w.phonetic}</span> <span class="small">${w.cn}</span></span>`).join("");
+    }
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text} <span class="phonetic">${p.phonetic}</span> <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+
+</div>
+</body>
+</html>
