@@ -21,54 +21,57 @@ body { font-family: Arial; background:#f5f6f7; padding:15px; }
 
 <script>
 const parts = [
-  {text:"Screw",phonetic:"/skruː/",cn:"螺钉",desc:"用于紧固连接的小型螺纹件"},
-  {text:"Spring Washer",phonetic:"/sprɪŋ ˈwɒʃər/",cn:"弹簧垫圈",desc:"用于防止松动的弹性垫圈", words:[
-    {w:"Spring",cn:"弹簧"},
-    {w:"Washer",cn:"垫圈"}
+  {text:"Screw", phonetic:"/skruː/", cn:"螺钉", desc:"用于紧固连接的小型螺纹件"},
+  {text:"Spring Washer", phonetic:"/sprɪŋ ˈwɒʃər/", cn:"弹簧垫圈", desc:"用于防止松动的弹性垫圈", words:[
+    {w:"Spring", cn:"弹簧", phonetic:"/sprɪŋ/"},
+    {w:"Washer", cn:"垫圈", phonetic:"/ˈwɒʃər/"}
   ]},
-  {text:"Washer",phonetic:"/ˈwɒʃər/",cn:"垫圈",desc:"用于分散压力、防止松动的辅助件"},
-  {text:"Rope-Fastening Board",phonetic:"/roʊp ˈfæsənɪŋ bɔːrd/",cn:"防护罩",desc:"用于固定绳索或保护零件的板", words:[
-    {w:"Rope",cn:"绳索"},
-    {w:"Fastening",cn:"固定"},
-    {w:"Board",cn:"板"}
+  {text:"Washer", phonetic:"/ˈwɒʃər/", cn:"垫圈", desc:"用于分散压力、防止松动的辅助件"},
+  {text:"Rope-Fastening Board", phonetic:"/roʊp ˈfæsənɪŋ bɔːrd/", cn:"防护罩", desc:"用于固定绳索或保护零件的板", words:[
+    {w:"Rope", cn:"绳索", phonetic:"/roʊp/"},
+    {w:"Fastening", cn:"固定", phonetic:"/ˈfæsənɪŋ/"},
+    {w:"Board", cn:"板", phonetic:"/bɔːrd/"}
   ]},
-  {text:"Upper Jib Boom",phonetic:"/ˈʌpər dʒɪb buːm/",cn:"上飞臂焊件",desc:"上部飞臂结构焊接件", words:[
-    {w:"Upper",cn:"上"},
-    {w:"Jib",cn:"飞臂"},
-    {w:"Boom",cn:"臂架"}
+  {text:"Upper Jib Boom", phonetic:"/ˈʌpər dʒɪb buːm/", cn:"上飞臂焊件", desc:"上部飞臂结构焊接件", words:[
+    {w:"Upper", cn:"上", phonetic:"/ˈʌpər/"},
+    {w:"Jib", cn:"飞臂", phonetic:"/dʒɪb/"},
+    {w:"Boom", cn:"臂架", phonetic:"/buːm/"}
   ]},
-  {text:"Self-Lubricating Bearing",phonetic:"/self ˈluːbrɪˌkeɪtɪŋ ˈbɛərɪŋ/",cn:"自润滑轴承",desc:"无需额外润滑即可运转的轴承", words:[
-    {w:"Self-Lubricating",cn:"自润滑"},
-    {w:"Bearing",cn:"轴承"}
+  {text:"Self-Lubricating Bearing", phonetic:"/self ˈluːbrɪˌkeɪtɪŋ ˈbɛərɪŋ/", cn:"自润滑轴承", desc:"无需额外润滑即可运转的轴承", words:[
+    {w:"Self-Lubricating", cn:"自润滑", phonetic:"/self ˈluːbrɪˌkeɪtɪŋ/"},
+    {w:"Bearing", cn:"轴承", phonetic:"/ˈbɛərɪŋ/"}
   ]},
-  {text:"Steel Structure High-Strength Washer",phonetic:"/stiːl ˈstrʌktʃər haɪ strɛŋθ ˈwɒʃər/",cn:"钢结构用高强度垫圈",desc:"用于钢结构中高强度固定的垫圈", words:[
-    {w:"Steel",cn:"钢结构"},
-    {w:"Structure",cn:"结构"},
-    {w:"High-Strength",cn:"高强度"},
-    {w:"Washer",cn:"垫圈"}
+  {text:"Steel Structure High-Strength Washer", phonetic:"/stiːl ˈstrʌktʃər haɪ strɛŋθ ˈwɒʃər/", cn:"钢结构用高强度垫圈", desc:"用于钢结构中高强度固定的垫圈", words:[
+    {w:"Steel", cn:"钢结构", phonetic:"/stiːl/"},
+    {w:"Structure", cn:"结构", phonetic:"/ˈstrʌktʃər/"},
+    {w:"High-Strength", cn:"高强度", phonetic:"/haɪ strɛŋθ/"},
+    {w:"Washer", cn:"垫圈", phonetic:"/ˈwɒʃər/"}
   ]},
-  {text:"Jib Basis",phonetic:"/dʒɪb ˈbeɪsɪs/",cn:"调平焊件",desc:"用于飞臂基础调平的焊接件", words:[
-    {w:"Jib",cn:"飞臂"},
-    {w:"Basis",cn:"基础"}
+  {text:"Jib Basis", phonetic:"/dʒɪb ˈbeɪsɪs/", cn:"调平焊件", desc:"用于飞臂基础调平的焊接件", words:[
+    {w:"Jib", cn:"飞臂", phonetic:"/dʒɪb/"},
+    {w:"Basis", cn:"基础", phonetic:"/ˈbeɪsɪs/"}
   ]},
-  {text:"Shaft",phonetic:"/ʃæft/",cn:"销轴焊件",desc:"用于旋转或连接的轴类零件"},
-  {text:"Bolt",phonetic:"/boʊlt/",cn:"螺栓",desc:"用于连接和紧固零部件的常见紧固件"},
-  {text:"Washer",phonetic:"/ˈwɒʃər/",cn:"垫圈",desc:"用于分散压力、防止松动的辅助件"},
-  {text:"Plate",phonetic:"/pleɪt/",cn:"垫片",desc:"用于支撑或分隔的板片"},
-  {text:"Inspection Board",phonetic:"/ɪnˈspekʃən bɔːrd/",cn:"检测板",desc:"用于检查或检测零件的板材组件"},
-  {text:"Washer",phonetic:"/ˈwɒʃər/",cn:"钢结构用高强度垫圈",desc:"用于钢结构中高强度固定的垫圈"},
-  {text:"Lower Jib Boom",phonetic:"/ˈloʊər dʒɪb buːm/",cn:"下飞臂焊件",desc:"下部飞臂结构焊接件", words:[
-    {w:"Lower",cn:"下"},
-    {w:"Jib",cn:"飞臂"},
-    {w:"Boom",cn:"臂架"}
+  {text:"Shaft", phonetic:"/ʃæft/", cn:"销轴焊件", desc:"用于旋转或连接的轴类零件"},
+  {text:"Bolt", phonetic:"/boʊlt/", cn:"螺栓", desc:"用于连接和紧固零部件的常见紧固件"},
+  {text:"Washer", phonetic:"/ˈwɒʃər/", cn:"垫圈", desc:"用于分散压力、防止松动的辅助件"},
+  {text:"Plate", phonetic:"/pleɪt/", cn:"垫片", desc:"用于支撑或分隔的板片"},
+  {text:"Inspection Board", phonetic:"/ɪnˈspekʃən bɔːrd/", cn:"检测板", desc:"用于检查或检测零件的板材组件", words:[
+    {w:"Inspection", cn:"检查", phonetic:"/ɪnˈspekʃən/"},
+    {w:"Board", cn:"板", phonetic:"/bɔːrd/"}
   ]},
-  {text:"Keeper Pin",phonetic:"/ˈkiːpər pɪn/",cn:"销轴",desc:"用于固定零件的销钉"},
-  {text:"Shaft",phonetic:"/ʃæft/",cn:"轴",desc:"用于旋转传动的轴件"},
-  {text:"Swing Cylinder",phonetic:"/swɪŋ ˈsɪlɪndər/",cn:"摆动马达",desc:"用于驱动旋转或摆动的油缸", words:[
-    {w:"Swing",cn:"摆动"},
-    {w:"Cylinder",cn:"马达"}
+  {text:"Washer", phonetic:"/ˈwɒʃər/", cn:"钢结构用高强度垫圈", desc:"用于钢结构中高强度固定的垫圈"},
+  {text:"Lower Jib Boom", phonetic:"/ˈloʊər dʒɪb buːm/", cn:"下飞臂焊件", desc:"下部飞臂结构焊接件", words:[
+    {w:"Lower", cn:"下", phonetic:"/ˈloʊər/"},
+    {w:"Jib", cn:"飞臂", phonetic:"/dʒɪb/"},
+    {w:"Boom", cn:"臂架", phonetic:"/buːm/"}
   ]},
-  {text:"Bracket",phonetic:"/ˈbrækɪt/",cn:"支架",desc:"用于支撑和固定其他零部件的结构件"}
+  {text:"Keeper Pin", phonetic:"/ˈkiːpər pɪn/", cn:"销轴", desc:"用于固定零件的销钉"},
+  {text:"Shaft", phonetic:"/ʃæft/", cn:"轴", desc:"用于旋转传动的轴件"},
+  {text:"Swing Cylinder", phonetic:"/swɪŋ ˈsɪlɪndər/", cn:"摆动马达", desc:"用于驱动旋转或摆动的油缸", words:[
+    {w:"Swing", cn:"摆动", phonetic:"/swɪŋ/"},
+    {w:"Cylinder", cn:"马达", phonetic:"/ˈsɪlɪndər/"}
+  ]},
+  {text:"Bracket", phonetic:"/ˈbrækɪt/", cn:"支架", desc:"用于支撑和固定其他零部件的结构件"}
 ];
 
 function speak(text){
@@ -84,7 +87,7 @@ function renderParts(){
     item.className = 'item';
     let wordsHtml = "";
     if(p.words){
-      wordsHtml = p.words.map(w=>`<span class="word btn" onclick="speak('${w.w}')">🔊 ${w.w} <span class="small">${w.cn}</span></span>`).join("");
+      wordsHtml = p.words.map(w=>`<span class="word btn" onclick="speak('${w.w}')">🔊 ${w.w} <span class="phonetic">${w.phonetic}</span> <span class="small">${w.cn}</span></span>`).join("");
     }
     item.innerHTML = `
       <div class="title btn" onclick="speak('${p.text}')">🔊 ${p.text} <span class="phonetic">${p.phonetic}</span> <span class="small">${p.cn}</span></div>
