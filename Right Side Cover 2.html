@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Right Side Cover 2 Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:700px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<script>
+const parts = [
+  {text:"Right Side Cover 2", phonetic:"/raɪt saɪd ˈkʌvər tuː/", cn:"右侧大覆盖件焊接体", desc:"右侧大型覆盖件焊接体，用于保护和支撑零部件", words:[
+    {w:"Right", cn:"右侧", phonetic:"/raɪt/"},
+    {w:"Side", cn:"侧面", phonetic:"/saɪd/"},
+    {w:"Cover", cn:"覆盖件", phonetic:"/ˈkʌvər/"},
+    {w:"2", cn:"编号2", phonetic:"/tuː/"}
+  ]},
+  {text:"Handle", phonetic:"/ˈhændl/", cn:"拉手", desc:"用于开关或抓握的手柄"},
+  {text:"Door Lock", phonetic:"/dɔːr lɒk/", cn:"门锁", desc:"用于锁闭门的装置", words:[
+    {w:"Door", cn:"门", phonetic:"/dɔːr/"},
+    {w:"Lock", cn:"锁", phonetic:"/lɒk/"}
+  ]},
+  {text:"Washer", phonetic:"/ˈwɒʃər/", cn:"垫圈", desc:"用于分散压力、防止松动的辅助件"},
+  {text:"Spring Washer", phonetic:"/sprɪŋ ˈwɒʃər/", cn:"弹簧垫圈", desc:"用于防止松动的弹性垫圈", words:[
+    {w:"Spring", cn:"弹簧", phonetic:"/sprɪŋ/"},
+    {w:"Washer", cn:"垫圈", phonetic:"/ˈwɒʃər/"}
+  ]},
+  {text:"Screw", phonetic:"/skruː/", cn:"螺钉", desc:"用于紧固连接的小型螺纹件"},
+  {text:"Nut", phonetic:"/nʌt/", cn:"螺母", desc:"用于与螺栓配合紧固的零件"},
+  {text:"Bolt", phonetic:"/boʊlt/", cn:"螺栓", desc:"用于连接和紧固零部件的紧固件"},
+  {text:"Plate", phonetic:"/pleɪt/", cn:"板", desc:"用于支撑或覆盖零件的板材"},
+  {text:"Hinge", phonetic:"/hɪndʒ/", cn:"铰链", desc:"用于门或板材旋转连接的铰链"},
+  {text:"Board", phonetic:"/bɔːrd/", cn:"板", desc:"用于覆盖或支撑零部件的板材"},
+  {text:"Exhaust Pipe Assembly", phonetic:"/ɪɡˈzɔːst paɪp əˈsɛmbli/", cn:"排气管总成", desc:"用于排放废气的管道组件", words:[
+    {w:"Exhaust", cn:"排气", phonetic:"/ɪɡˈzɔːst/"},
+    {w:"Pipe", cn:"管", phonetic:"/paɪp/"},
+    {w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`<span class="word btn" onclick="speak('${w.w}')">🔊 ${w.w} <span class="phonetic">${w.phonetic}</span> <span class="small">${w.cn}</span></span>`).join("");
+    }
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text} <span class="phonetic">${p.phonetic}</span> <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+
+</div>
+</body>
+</html>
