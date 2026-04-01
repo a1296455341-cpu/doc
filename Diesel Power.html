@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:700px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="item">
+  <div class="title btn" onclick="speak('Fuel System')">
+    🔊 Fuel System <span class="phonetic">/fjuːl ˈsɪstəm/</span> <span class="small">燃油系统</span>
+  </div>
+  <div class="desc">提供并管理燃油供应，保证发动机运转</div>
+  <span class="word btn" onclick="speak('Fuel')">🔊 Fuel <span class="phonetic">/fjuːl/</span> <span class="small">燃油</span></span>
+  <span class="word btn" onclick="speak('System')">🔊 System <span class="phonetic">/ˈsɪstəm/</span> <span class="small">系统</span></span>
+</div>
+
+<div class="item">
+  <div class="title btn" onclick="speak('Control System')">
+    🔊 Control System <span class="phonetic">/kənˈtroʊl ˈsɪstəm/</span> <span class="small">控制系统</span>
+  </div>
+  <div class="desc">用于操作和监控设备运行状态</div>
+  <span class="word btn" onclick="speak('Control')">🔊 Control <span class="phonetic">/kənˈtroʊl/</span> <span class="small">控制</span></span>
+  <span class="word btn" onclick="speak('System')">🔊 System <span class="phonetic">/ˈsɪstəm/</span> <span class="small">系统</span></span>
+</div>
+
+<div class="item">
+  <div class="title btn" onclick="speak('Air Intake and Exhaust System')">
+    🔊 Air Intake and Exhaust System <span class="phonetic">/ɛər ˈɪnteɪk ənd ɪɡˈzɔːst ˈsɪstəm/</span> <span class="small">进排气系统</span>
+  </div>
+  <div class="desc">负责空气进入与废气排出，保证发动机呼吸畅通</div>
+  <span class="word btn" onclick="speak('Air')">🔊 Air <span class="phonetic">/ɛər/</span> <span class="small">空气</span></span>
+  <span class="word btn" onclick="speak('Intake')">🔊 Intake <span class="phonetic">/ˈɪnteɪk/</span> <span class="small">进气</span></span>
+  <span class="word btn" onclick="speak('Exhaust')">🔊 Exhaust <span class="phonetic">/ɪɡˈzɔːst/</span> <span class="small">排气</span></span>
+  <span class="word btn" onclick="speak('System')">🔊 System <span class="phonetic">/ˈsɪstəm/</span> <span class="small">系统</span></span>
+</div>
+
+<div class="item">
+  <div class="title btn" onclick="speak('Transmission and Suspension System')">
+    🔊 Transmission and Suspension System <span class="phonetic">/trænzˈmɪʃən ənd səˈspɛnʃən ˈsɪstəm/</span> <span class="small">传动与减震系统</span>
+  </div>
+  <div class="desc">负责动力传递及减震缓冲，保证行驶平稳</div>
+  <span class="word btn" onclick="speak('Transmission')">🔊 Transmission <span class="phonetic">/trænzˈmɪʃən/</span> <span class="small">传动</span></span>
+  <span class="word btn" onclick="speak('Suspension')">🔊 Suspension <span class="phonetic">/səˈspɛnʃən/</span> <span class="small">减震</span></span>
+  <span class="word btn" onclick="speak('System')">🔊 System <span class="phonetic">/ˈsɪstəm/</span> <span class="small">系统</span></span>
+</div>
+
+<div class="item">
+  <div class="title btn" onclick="speak('Cooling System')">
+    🔊 Cooling System <span class="phonetic">/ˈkuːlɪŋ ˈsɪstəm/</span> <span class="small">冷却系统</span>
+  </div>
+  <div class="desc">用于冷却发动机及相关部件，防止过热</div>
+  <span class="word btn" onclick="speak('Cooling')">🔊 Cooling <span class="phonetic">/ˈkuːlɪŋ/</span> <span class="small">冷却</span></span>
+  <span class="word btn" onclick="speak('System')">🔊 System <span class="phonetic">/ˈsɪstəm/</span> <span class="small">系统</span></span>
+</div>
+
+<script>
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+</script>
+
+</div>
+</body>
+</html>
