@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Air Filter Components 2</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:700px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  {text:"Dust Ejector Valve", phonetic:"/dʌst ɪˈdʒɛktər væl v/", cn:"排尘阀", desc:"用于排出空气滤清器中的灰尘", words:[
+    {w:"Dust", cn:"灰尘", phonetic:"/dʌst/"},
+    {w:"Ejector", cn:"排出器", phonetic:"/ɪˈdʒɛktər/"},
+    {w:"Valve", cn:"阀", phonetic:"/vælv/"}
+  ]},
+
+  {text:"End Cap Assembly", phonetic:"/ɛnd kæp əˈsɛmbli/", cn:"端盖组件", desc:"用于封闭或保护结构端部", words:[
+    {w:"End", cn:"端部", phonetic:"/ɛnd/"},
+    {w:"Cap", cn:"盖", phonetic:"/kæp/"},
+    {w:"Assembly", cn:"组件", phonetic:"/əˈsɛmbli/"}
+  ]},
+
+  {text:"Primary Air Filter Element", phonetic:"/ˈpraɪməri ɛər ˈfɪltər ˈɛləmənt/", cn:"空气滤清器主滤芯", desc:"主要过滤空气中杂质的滤芯", words:[
+    {w:"Primary", cn:"主", phonetic:"/ˈpraɪməri/"},
+    {w:"Air", cn:"空气", phonetic:"/ɛər/"},
+    {w:"Filter", cn:"滤清器", phonetic:"/ˈfɪltər/"},
+    {w:"Element", cn:"滤芯", phonetic:"/ˈɛləmənt/"}
+  ]},
+
+  {text:"Secondary Air Filter Element", phonetic:"/ˈsɛkəndɛri ɛər ˈfɪltər ˈɛləmənt/", cn:"空气滤清器安全滤芯", desc:"作为辅助保护的滤芯", words:[
+    {w:"Secondary", cn:"副/次级", phonetic:"/ˈsɛkəndɛri/"},
+    {w:"Air", cn:"空气", phonetic:"/ɛər/"},
+    {w:"Filter", cn:"滤清器", phonetic:"/ˈfɪltər/"},
+    {w:"Element", cn:"滤芯", phonetic:"/ˈɛləmənt/"}
+  ]},
+
+  {text:"Housing Assembly", phonetic:"/ˈhaʊzɪŋ əˈsɛmbli/", cn:"壳体组件", desc:"用于容纳和保护内部零件", words:[
+    {w:"Housing", cn:"壳体", phonetic:"/ˈhaʊzɪŋ/"},
+    {w:"Assembly", cn:"组件", phonetic:"/əˈsɛmbli/"}
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w} 
+          <span class="phonetic">${w.phonetic}</span> 
+          <span class="small">${w.cn}</span>
+        </span>
+      `).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text} 
+        <span class="phonetic">${p.phonetic}</span> 
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+
+</body>
+</html>
