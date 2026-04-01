@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connector Assembly Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:700px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<script>
+const parts = [
+  {text:"Shaft", phonetic:"/ʃæft/", cn:"销", desc:"用于旋转或固定零件的轴类零件"},
+  {text:"Connector Base", phonetic:"/kəˈnɛktər beɪs/", cn:"连接座", desc:"用于连接和支撑其他零部件的基础件", words:[
+    {w:"Connector", cn:"连接器", phonetic:"/kəˈnɛktər/"},
+    {w:"Base", cn:"座", phonetic:"/beɪs/"}
+  ]},
+  {text:"Bolt", phonetic:"/boʊlt/", cn:"螺栓", desc:"用于连接和紧固零部件的常见紧固件"},
+  {text:"Sliding Block", phonetic:"/ˈslaɪdɪŋ blɒk/", cn:"滑块", desc:"用于导向和支撑运动的滑动零件", words:[
+    {w:"Sliding", cn:"滑动的", phonetic:"/ˈslaɪdɪŋ/"},
+    {w:"Block", cn:"块", phonetic:"/blɒk/"}
+  ]},
+  {text:"Screw", phonetic:"/skruː/", cn:"螺钉", desc:"用于紧固连接的小型螺纹件"},
+  {text:"Nut", phonetic:"/nʌt/", cn:"螺母", desc:"用于与螺栓配合紧固的零件"},
+  {text:"Plate", phonetic:"/pleɪt/", cn:"板", desc:"用于支撑或分隔的板片"},
+  {text:"Washer", phonetic:"/ˈwɒʃər/", cn:"垫圈", desc:"用于分散压力、防止松动的辅助件"},
+  {text:"Spring", phonetic:"/sprɪŋ/", cn:"弹簧", desc:"用于储存或释放能量的弹性零件"},
+  {text:"Steel Wire Rope", phonetic:"/stiːl waɪər roʊp/", cn:"钢丝绳", desc:"用于提升或牵引的钢制绳索", words:[
+    {w:"Steel", cn:"钢", phonetic:"/stiːl/"},
+    {w:"Wire", cn:"丝", phonetic:"/waɪər/"},
+    {w:"Rope", cn:"绳", phonetic:"/roʊp/"}
+  ]},
+  {text:"Roller", phonetic:"/ˈroʊlər/", cn:"滚轮", desc:"用于支撑或导向运动的轮件"},
+  {text:"Pin", phonetic:"/pɪn/", cn:"销", desc:"用于固定零件的销钉"},
+  {text:"Sheave Assembly", phonetic:"/ʃiːv əˈsɛmbli/", cn:"滑轮组件", desc:"滑轮及相关零件组合而成的总成", words:[
+    {w:"Sheave", cn:"滑轮", phonetic:"/ʃiːv/"},
+    {w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`<span class="word btn" onclick="speak('${w.w}')">🔊 ${w.w} <span class="phonetic">${w.phonetic}</span> <span class="small">${w.cn}</span></span>`).join("");
+    }
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text} <span class="phonetic">${p.phonetic}</span> <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+
+</div>
+</body>
+</html>
