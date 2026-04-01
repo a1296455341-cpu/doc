@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muffler Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:700px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<script>
+const parts = [
+  {text:"Muffler", phonetic:"/ˈmʌflər/", cn:"消声器", desc:"用于降低发动机排气噪音"},
+  
+  {text:"Clamp", phonetic:"/klæmp/", cn:"环箍", desc:"用于固定管道或部件"},
+  
+  {text:"Nut", phonetic:"/nʌt/", cn:"螺母", desc:"用于配合螺栓紧固"},
+  
+  {text:"Muffler Clamp", phonetic:"/ˈmʌflər klæmp/", cn:"消音器抱箍", desc:"用于固定消音器", words:[
+    {w:"Muffler", cn:"消音器", phonetic:"/ˈmʌflər/"},
+    {w:"Clamp", cn:"抱箍", phonetic:"/klæmp/"}
+  ]},
+  
+  {text:"Bolt", phonetic:"/boʊlt/", cn:"螺栓", desc:"用于连接零件"},
+  
+  {text:"Washer", phonetic:"/ˈwɒʃər/", cn:"垫圈", desc:"用于分散压力"},
+  
+  {text:"Tube of Muffler", phonetic:"/tuːb əv ˈmʌflər/", cn:"管带", desc:"用于连接消音器的管道", words:[
+    {w:"Tube", cn:"管", phonetic:"/tuːb/"},
+    {w:"of", cn:"的", phonetic:"/əv/"},
+    {w:"Muffler", cn:"消音器", phonetic:"/ˈmʌflər/"}
+  ]},
+  
+  {text:"Muffler Bracket", phonetic:"/ˈmʌflər ˈbrækɪt/", cn:"消音器支架", desc:"用于支撑消音器", words:[
+    {w:"Muffler", cn:"消音器", phonetic:"/ˈmʌflər/"},
+    {w:"Bracket", cn:"支架", phonetic:"/ˈbrækɪt/"}
+  ]},
+  
+  {text:"Clamp", phonetic:"/klæmp/", cn:"线夹", desc:"用于固定线束"},
+  
+  {text:"Bracket", phonetic:"/ˈbrækɪt/", cn:"支架", desc:"用于支撑或固定结构件"},
+  
+  {text:"Hose Clamp", phonetic:"/hoʊz klæmp/", cn:"喉箍", desc:"用于固定软管", words:[
+    {w:"Hose", cn:"软管", phonetic:"/hoʊz/"},
+    {w:"Clamp", cn:"抱箍", phonetic:"/klæmp/"}
+  ]},
+  
+  {text:"Crankcase Ventilation Tube", phonetic:"/ˈkræŋkkeɪs ˌvɛntɪˈleɪʃən tuːb/", cn:"曲轴箱通风管", desc:"用于排出曲轴箱气体", words:[
+    {w:"Crankcase", cn:"曲轴箱", phonetic:"/ˈkræŋkkeɪs/"},
+    {w:"Ventilation", cn:"通风", phonetic:"/ˌvɛntɪˈleɪʃən/"},
+    {w:"Tube", cn:"管", phonetic:"/tuːb/"}
+  ]},
+  
+  {text:"Muffler", phonetic:"/ˈmʌflər/", cn:"消音器排水管", desc:"用于排出消音器内积水"}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`<span class="word btn" onclick="speak('${w.w}')">🔊 ${w.w} <span class="phonetic">${w.phonetic}</span> <span class="small">${w.cn}</span></span>`).join("");
+    }
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text} <span class="phonetic">${p.phonetic}</span> <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+
+</div>
+</body>
+</html>
