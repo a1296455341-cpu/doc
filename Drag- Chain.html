@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drag Chain Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:700px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="item">
+  <div class="title btn" onclick="speak('Screw')">🔊 Screw <span class="phonetic">/skruː/</span> <span class="small">螺钉</span></div>
+  <div class="desc">用于紧固连接的小型螺纹件</div>
+</div>
+
+<div class="item">
+  <div class="title btn" onclick="speak('Washer')">🔊 Washer <span class="phonetic">/ˈwɒʃər/</span> <span class="small">垫圈</span></div>
+  <div class="desc">用于分散压力、防止松动的辅助件</div>
+</div>
+
+<div class="item">
+  <div class="title btn" onclick="speak('Nut')">🔊 Nut <span class="phonetic">/nʌt/</span> <span class="small">螺母</span></div>
+  <div class="desc">与螺栓配合使用，用于紧固零件</div>
+</div>
+
+<div class="item">
+  <div class="title btn" onclick="speak('Drag Chain')">
+    🔊 Drag Chain <span class="phonetic">/dræɡ tʃeɪn/</span> <span class="small">拖链</span>
+  </div>
+  <div class="desc">用于引导和保护电缆或管路随机械运动而移动</div>
+  <span class="word btn" onclick="speak('Drag')">🔊 Drag <span class="phonetic">/dræɡ/</span> <span class="small">拖动</span></span>
+  <span class="word btn" onclick="speak('Chain')">🔊 Chain <span class="phonetic">/tʃeɪn/</span> <span class="small">链条</span></span>
+</div>
+
+<div class="item">
+  <div class="title btn" onclick="speak('Bracket')">🔊 Bracket <span class="phonetic">/ˈbrækɪt/</span> <span class="small">支架</span></div>
+  <div class="desc">用于支撑和固定其他零部件的结构件</div>
+</div>
+
+<div class="item">
+  <div class="title btn" onclick="speak('Spacer')">🔊 Spacer <span class="phonetic">/ˈspeɪsər/</span> <span class="small">垫片</span></div>
+  <div class="desc">用于调整零件间距或支撑的薄片</div>
+</div>
+
+<div class="item">
+  <div class="title btn" onclick="speak('Plate')">🔊 Plate <span class="phonetic">/pleɪt/</span> <span class="small">板</span></div>
+  <div class="desc">用于支撑或分隔的板材</div>
+</div>
+
+<div class="item">
+  <div class="title btn" onclick="speak('Bolt')">🔊 Bolt <span class="phonetic">/boʊlt/</span> <span class="small">螺栓</span></div>
+  <div class="desc">用于连接和紧固零部件的常见紧固件</div>
+</div>
+
+<div class="item">
+  <div class="title btn" onclick="speak('Sliding Block')">
+    🔊 Sliding Block <span class="phonetic">/ˈslaɪdɪŋ blɒk/</span> <span class="small">滑块</span>
+  </div>
+  <div class="desc">用于导向或支撑移动零件的滑动组件</div>
+  <span class="word btn" onclick="speak('Sliding')">🔊 Sliding <span class="phonetic">/ˈslaɪdɪŋ/</span> <span class="small">滑动</span></span>
+  <span class="word btn" onclick="speak('Block')">🔊 Block <span class="phonetic">/blɒk/</span> <span class="small">块</span></span>
+</div>
+
+<div class="item">
+  <div class="title btn" onclick="speak('Bent Plate')">
+    🔊 Bent Plate <span class="phonetic">/bɛnt pleɪt/</span> <span class="small">弯板</span>
+  </div>
+  <div class="desc">板材弯曲成所需角度，用于结构支撑</div>
+  <span class="word btn" onclick="speak('Bent')">🔊 Bent <span class="phonetic">/bɛnt/</span> <span class="small">弯曲</span></span>
+  <span class="word btn" onclick="speak('Plate')">🔊 Plate <span class="phonetic">/pleɪt/</span> <span class="small">板</span></span>
+</div>
+
+<div class="item">
+  <div class="title btn" onclick="speak('Support')">🔊 Support <span class="phonetic">/səˈpɔːrt/</span> <span class="small">支撑</span></div>
+  <div class="desc">用于支撑零件，保持结构稳定</div>
+</div>
+
+<script>
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+</script>
+
+</div>
+</body>
+</html>
