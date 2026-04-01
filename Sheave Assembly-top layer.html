@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sheave Assembly Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:700px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Bolt -->
+<div class="item">
+  <div class="title btn" onclick="speak('Bolt')">
+    🔊 Bolt <span class="phonetic">/boʊlt/</span> <span class="small">螺栓</span>
+  </div>
+  <div class="desc">用于连接和紧固零部件的常见紧固件</div>
+</div>
+
+<!-- Sliding Block -->
+<div class="item">
+  <div class="title btn" onclick="speak('Sliding Block')">
+    🔊 Sliding Block <span class="phonetic">/ˈslaɪdɪŋ blɑːk/</span> <span class="small">滑块</span>
+  </div>
+  <div class="desc">在机械装置中用于滑动支撑或导向的块件</div>
+  <span class="word btn" onclick="speak('Sliding')">
+    🔊 Sliding <span class="phonetic">/ˈslaɪdɪŋ/</span> <span class="small">滑动</span>
+  </span>
+  <span class="word btn" onclick="speak('Block')">
+    🔊 Block <span class="phonetic">/blɑːk/</span> <span class="small">块</span>
+  </span>
+</div>
+
+<!-- Washer -->
+<div class="item">
+  <div class="title btn" onclick="speak('Washer')">
+    🔊 Washer <span class="phonetic">/ˈwɒʃər/</span> <span class="small">垫圈</span>
+  </div>
+  <div class="desc">用于分散压力、防止松动的辅助件</div>
+</div>
+
+<!-- Nut -->
+<div class="item">
+  <div class="title btn" onclick="speak('Nut')">
+    🔊 Nut <span class="phonetic">/nʌt/</span> <span class="small">螺母</span>
+  </div>
+  <div class="desc">配合螺栓使用，用于紧固零件</div>
+</div>
+
+<!-- Sheave Base -->
+<div class="item">
+  <div class="title btn" onclick="speak('Sheave Base')">
+    🔊 Sheave Base <span class="phonetic">/ʃiːv beɪs/</span> <span class="small">滑轮座</span>
+  </div>
+  <div class="desc">用于固定滑轮组件的基座</div>
+  <span class="word btn" onclick="speak('Sheave')">
+    🔊 Sheave <span class="phonetic">/ʃiːv/</span> <span class="small">滑轮</span>
+  </span>
+  <span class="word btn" onclick="speak('Base')">
+    🔊 Base <span class="phonetic">/beɪs/</span> <span class="small">基座</span>
+  </span>
+</div>
+
+<!-- Spring Washer -->
+<div class="item">
+  <div class="title btn" onclick="speak('Spring Washer')">
+    🔊 Spring Washer <span class="phonetic">/sprɪŋ ˈwɒʃər/</span> <span class="small">弹簧垫圈</span>
+  </div>
+  <div class="desc">用于防止螺栓松动的弹性垫圈</div>
+  <span class="word btn" onclick="speak('Spring')">
+    🔊 Spring <span class="phonetic">/sprɪŋ/</span> <span class="small">弹簧</span>
+  </span>
+  <span class="word btn" onclick="speak('Washer')">
+    🔊 Washer <span class="phonetic">/ˈwɒʃər/</span> <span class="small">垫圈</span>
+  </span>
+</div>
+
+<!-- Screw -->
+<div class="item">
+  <div class="title btn" onclick="speak('Screw')">
+    🔊 Screw <span class="phonetic">/skruː/</span> <span class="small">螺钉</span>
+  </div>
+  <div class="desc">用于连接零部件的小型螺纹紧固件</div>
+</div>
+
+<!-- Pin -->
+<div class="item">
+  <div class="title btn" onclick="speak('Pin')">
+    🔊 Pin <span class="phonetic">/pɪn/</span> <span class="small">销</span>
+  </div>
+  <div class="desc">用于固定或连接零件的销钉</div>
+</div>
+
+<!-- Sheave Assembly -->
+<div class="item">
+  <div class="title btn" onclick="speak('Sheave Assembly')">
+    🔊 Sheave Assembly <span class="phonetic">/ʃiːv əˈsɛmbli/</span> <span class="small">滑轮组</span>
+  </div>
+  <div class="desc">由滑轮及其固定零件组成的组件</div>
+  <span class="word btn" onclick="speak('Sheave')">
+    🔊 Sheave <span class="phonetic">/ʃiːv/</span> <span class="small">滑轮</span>
+  </span>
+  <span class="word btn" onclick="speak('Assembly')">
+    🔊 Assembly <span class="phonetic">/əˈsɛmbli/</span> <span class="small">组件</span>
+  </span>
+</div>
+
+<script>
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+</script>
+
+</div>
+</body>
+</html>
