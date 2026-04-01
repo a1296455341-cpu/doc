@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hardware Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:700px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="item">
+  <div class="title btn" onclick="speak('Bolt')">
+    🔊 Bolt <span class="phonetic">/boʊlt/</span> <span class="small">螺栓</span>
+  </div>
+  <div class="desc">用于连接和紧固零部件的常见紧固件</div>
+</div>
+
+<div class="item">
+  <div class="title btn" onclick="speak('Bracket')">
+    🔊 Bracket <span class="phonetic">/ˈbrækɪt/</span> <span class="small">支架</span>
+  </div>
+  <div class="desc">用于支撑和固定其他零部件的结构件</div>
+</div>
+
+<div class="item">
+  <div class="title btn" onclick="speak('Nut')">
+    🔊 Nut <span class="phonetic">/nʌt/</span> <span class="small">螺母</span>
+  </div>
+  <div class="desc">与螺栓配合使用的紧固件</div>
+</div>
+
+<script>
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+</script>
+
+</div>
+</body>
+</html>
