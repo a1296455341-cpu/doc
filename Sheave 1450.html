@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sheave Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:700px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Self-Lubricating Bearing -->
+<div class="item">
+  <div class="title btn" onclick="speak('Self-Lubricating Bearing')">
+    🔊 Self-Lubricating Bearing <span class="phonetic">/self ˈluːbrɪˌkeɪtɪŋ ˈbɛərɪŋ/</span> <span class="small">自润滑轴承</span>
+  </div>
+  <div class="desc">无需额外润滑即可运转的轴承</div>
+  <span class="word btn" onclick="speak('Self-Lubricating')">
+    🔊 Self-Lubricating <span class="phonetic">/self ˈluːbrɪˌkeɪtɪŋ/</span> <span class="small">自润滑</span>
+  </span>
+  <span class="word btn" onclick="speak('Bearing')">
+    🔊 Bearing <span class="phonetic">/ˈbɛərɪŋ/</span> <span class="small">轴承</span>
+  </span>
+</div>
+
+<!-- Sheave -->
+<div class="item">
+  <div class="title btn" onclick="speak('Sheave')">
+    🔊 Sheave <span class="phonetic">/ʃiːv/</span> <span class="small">滑轮</span>
+  </div>
+  <div class="desc">用于传递动力或改变钢丝绳方向的轮组件</div>
+</div>
+
+<script>
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+</script>
+
+</div>
+</body>
+</html>
