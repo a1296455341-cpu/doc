@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electrical Systems Vocabulary</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:800px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  {text:"Turntable Electrical System Assembly", phonetic:"/ˈtɜːnˌteɪbəl ɪˈlɛktrɪkəl ˈsɪstəm əˈsɛmbli/", cn:"转台电气系统", desc:"用于转台部分的电气控制与供电系统", words:[
+    {w:"Turntable", cn:"转台", phonetic:"/ˈtɜːnˌteɪbəl/"},
+    {w:"Electrical", cn:"电气的", phonetic:"/ɪˈlɛktrɪkəl/"},
+    {w:"System", cn:"系统", phonetic:"/ˈsɪstəm/"},
+    {w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+  ]},
+
+  {text:"Telescopic Boom Electrical Assembly", phonetic:"/ˌtelɪˈskɒpɪk buːm ɪˈlɛktrɪkəl əˈsɛmbli/", cn:"臂架电气系统", desc:"用于伸缩臂架的电气控制系统", words:[
+    {w:"Telescopic", cn:"伸缩的", phonetic:"/ˌtelɪˈskɒpɪk/"},
+    {w:"Boom", cn:"臂架", phonetic:"/buːm/"},
+    {w:"Electrical", cn:"电气的", phonetic:"/ɪˈlɛktrɪkəl/"},
+    {w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+  ]},
+
+  {text:"Platform Electrical System Assembly", phonetic:"/ˈplætfɔːrm ɪˈlɛktrɪkəl ˈsɪstəm əˈsɛmbli/", cn:"平台电气系统", desc:"用于工作平台的电气控制系统", words:[
+    {w:"Platform", cn:"平台", phonetic:"/ˈplætfɔːrm/"},
+    {w:"Electrical", cn:"电气的", phonetic:"/ɪˈlɛktrɪkəl/"},
+    {w:"System", cn:"系统", phonetic:"/ˈsɪstəm/"},
+    {w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+  ]},
+
+  {text:"Chassis Electrical System Assembly", phonetic:"/ˈʃæsi ɪˈlɛktrɪkəl ˈsɪstəm əˈsɛmbli/", cn:"下车电气系统", desc:"用于底盘部分的电气控制系统", words:[
+    {w:"Chassis", cn:"底盘/车架", phonetic:"/ˈʃæsi/"},
+    {w:"Electrical", cn:"电气的", phonetic:"/ɪˈlɛktrɪkəl/"},
+    {w:"System", cn:"系统", phonetic:"/ˈsɪstəm/"},
+    {w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function render(){
+  const container = document.querySelector('.container');
+
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    const wordsHtml = p.words.map(w=>`
+      <span class="word btn" onclick="speak('${w.w}')">
+        🔊 ${w.w}
+        <span class="phonetic">${w.phonetic}</span>
+        <span class="small">${w.cn}</span>
+      </span>
+    `).join("");
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+
+    container.appendChild(item);
+  });
+}
+
+window.onload = render;
+</script>
+
+</body>
+</html>
