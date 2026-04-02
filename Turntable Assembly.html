@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Turntable Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:700px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  {text:"Turntable Weldment Assembly", phonetic:"/ˈtɜːrnteɪbl ˈwɛldmənt əˈsɛmbli/", cn:"转台焊接总成", desc:"用于支撑和旋转结构的焊接总成", words:[
+    {w:"Turntable", cn:"转台", phonetic:"/ˈtɜːrnteɪbl/"},
+    {w:"Weldment", cn:"焊接件", phonetic:"/ˈwɛldmənt/"},
+    {w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+  ]},
+
+  {text:"Bolt", phonetic:"/boʊlt/", cn:"螺栓", desc:"用于连接和紧固"},
+
+  {text:"Washer", phonetic:"/ˈwɒʃər/", cn:"垫圈", desc:"用于分散压力、防松"},
+
+  {text:"Keeper Pin", phonetic:"/ˈkiːpər pɪn/", cn:"轴销", desc:"用于定位或固定轴类零件", words:[
+    {w:"Keeper", cn:"固定件", phonetic:"/ˈkiːpər/"},
+    {w:"Pin", cn:"销", phonetic:"/pɪn/"}
+  ]},
+
+  {text:"Shaft", phonetic:"/ʃæft/", cn:"轴", desc:"用于传递动力或支撑旋转"},
+
+  {text:"Plate", phonetic:"/pleɪt/", cn:"板", desc:"用于支撑或连接"},
+
+  {text:"Spring Washer", phonetic:"/sprɪŋ ˈwɒʃər/", cn:"弹簧垫圈", desc:"用于防止松动", words:[
+    {w:"Spring", cn:"弹簧", phonetic:"/sprɪŋ/"},
+    {w:"Washer", cn:"垫圈", phonetic:"/ˈwɒʃər/"}
+  ]},
+
+  {text:"Rotating Shaft", phonetic:"/ˈroʊteɪtɪŋ ʃæft/", cn:"轴焊合", desc:"用于旋转传动的轴组件", words:[
+    {w:"Rotating", cn:"旋转的", phonetic:"/ˈroʊteɪtɪŋ/"},
+    {w:"Shaft", cn:"轴", phonetic:"/ʃæft/"}
+  ]},
+
+  {text:"Bent Plate", phonetic:"/bɛnt pleɪt/", cn:"弯板", desc:"用于结构连接或支撑", words:[
+    {w:"Bent", cn:"弯曲的", phonetic:"/bɛnt/"},
+    {w:"Plate", cn:"板", phonetic:"/pleɪt/"}
+  ]},
+
+  {text:"Bracket", phonetic:"/ˈbrækɪt/", cn:"支架", desc:"用于支撑或固定部件"},
+
+  {text:"Nut", phonetic:"/nʌt/", cn:"螺母", desc:"与螺栓配合使用"},
+
+  {text:"Screw", phonetic:"/skruː/", cn:"螺钉", desc:"用于小型紧固连接"},
+
+  {text:"Cushion Block", phonetic:"/ˈkʊʃən blɒk/", cn:"垫块", desc:"用于缓冲或支撑", words:[
+    {w:"Cushion", cn:"缓冲", phonetic:"/ˈkʊʃən/"},
+    {w:"Block", cn:"块", phonetic:"/blɒk/"}
+  ]},
+
+  {text:"Clamping Plate", phonetic:"/ˈklæmpɪŋ pleɪt/", cn:"压板", desc:"用于压紧固定零件", words:[
+    {w:"Clamping", cn:"夹紧", phonetic:"/ˈklæmpɪŋ/"},
+    {w:"Plate", cn:"板", phonetic:"/pleɪt/"}
+  ]},
+
+  {text:"Battery Hold-down Rod", phonetic:"/ˈbætəri hoʊld daʊn rɑːd/", cn:"蓄电池固定拉杆", desc:"用于固定蓄电池", words:[
+    {w:"Battery", cn:"电池", phonetic:"/ˈbætəri/"},
+    {w:"Hold-down", cn:"固定", phonetic:"/hoʊld daʊn/"},
+    {w:"Rod", cn:"杆", phonetic:"/rɑːd/"}
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>
+      `).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+
+</body>
+</html>
