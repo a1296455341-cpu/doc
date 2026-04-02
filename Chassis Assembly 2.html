@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chassis Weldment Inspection Vocabulary</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:750px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  {text:"Bolt", phonetic:"/boʊlt/", cn:"螺栓", desc:"用于连接和紧固结构件"},
+
+  {text:"Board", phonetic:"/bɔːrd/", cn:"板", desc:"基础结构板件"},
+
+  {text:"Nut", phonetic:"/nʌt/", cn:"螺母", desc:"与螺栓配合实现紧固"},
+
+  {text:"Washer", phonetic:"/ˈwɒʃər/", cn:"垫圈", desc:"用于分散压力、防松"},
+
+  {text:"Screw", phonetic:"/skruː/", cn:"螺钉", desc:"用于小型紧固连接"},
+
+  {text:"Sensor Washer", phonetic:"/ˈsɛnsər ˈwɒʃər/", cn:"传感器垫片", desc:"用于传感器安装定位", words:[
+    {w:"Sensor", cn:"传感器", phonetic:"/ˈsɛnsər/"},
+    {w:"Washer", cn:"垫片", phonetic:"/ˈwɒʃər/"}
+  ]},
+
+  {text:"Shaft", phonetic:"/ʃæft/", cn:"销轴", desc:"用于传递力或支撑结构"},
+
+  {text:"Bent Plate", phonetic:"/bɛnt pleɪt/", cn:"弯板", desc:"弯曲结构板件", words:[
+    {w:"Bent", cn:"弯曲的", phonetic:"/bɛnt/"},
+    {w:"Plate", cn:"板", phonetic:"/pleɪt/"}
+  ]},
+
+  {text:"Spring Washer", phonetic:"/sprɪŋ ˈwɒʃər/", cn:"弹簧垫圈", desc:"用于防松结构", words:[
+    {w:"Spring", cn:"弹簧", phonetic:"/sprɪŋ/"},
+    {w:"Washer", cn:"垫圈", phonetic:"/ˈwɒʃər/"}
+  ]},
+
+  {text:"Protective Board", phonetic:"/prəˈtɛktɪv bɔːrd/", cn:"护罩板", desc:"用于防护结构件", words:[
+    {w:"Protective", cn:"防护的", phonetic:"/prəˈtɛktɪv/"},
+    {w:"Board", cn:"板", phonetic:"/bɔːrd/"}
+  ]},
+
+  {text:"Mounting Plate", phonetic:"/ˈmaʊntɪŋ pleɪt/", cn:"安装板", desc:"用于设备安装固定", words:[
+    {w:"Mounting", cn:"安装", phonetic:"/ˈmaʊntɪŋ/"},
+    {w:"Plate", cn:"板", phonetic:"/pleɪt/"}
+  ]},
+
+  {text:"Inspection Plate", phonetic:"/ɪnˈspɛkʃən pleɪt/", cn:"检测板", desc:"用于结构检测与基准定位", words:[
+    {w:"Inspection", cn:"检测", phonetic:"/ɪnˈspɛkʃən/"},
+    {w:"Plate", cn:"板", phonetic:"/pleɪt/"}
+  ]},
+
+  {text:"Kingpin Pivot Bolt", phonetic:"/ˈkɪŋpɪn ˈpɪvət boʊlt/", cn:"主销活节螺栓", desc:"用于转向铰接结构连接", words:[
+    {w:"Kingpin", cn:"主销", phonetic:"/ˈkɪŋpɪn/"},
+    {w:"Pivot", cn:"枢轴", phonetic:"/ˈpɪvət/"},
+    {w:"Bolt", cn:"螺栓", phonetic:"/boʊlt/"}
+  ]},
+
+  {text:"Copper Washer", phonetic:"/ˈkɒpər ˈwɒʃər/", cn:"铜垫片", desc:"用于密封或导电辅助", words:[
+    {w:"Copper", cn:"铜", phonetic:"/ˈkɒpər/"},
+    {w:"Washer", cn:"垫片", phonetic:"/ˈwɒʃər/"}
+  ]},
+
+  {text:"Chassis Weldment", phonetic:"/ˈʃæsi ˈwɛldmənt/", cn:"车架焊接体", desc:"车架结构焊接总成", words:[
+    {w:"Chassis", cn:"车架", phonetic:"/ˈʃæsi/"},
+    {w:"Weldment", cn:"焊接体", phonetic:"/ˈwɛldmənt/"}
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>
+      `).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+
+</body>
+</html>
