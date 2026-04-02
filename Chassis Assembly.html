@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chassis & Steering Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:700px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  {text:"Tyre", phonetic:"/taɪər/", cn:"轮胎", desc:"用于车辆行驶和承载"},
+
+  {text:"Front Left Steering Knuckle Assembly", phonetic:"/frʌnt lɛft ˈstɪrɪŋ ˈnʌkəl əˈsɛmbli/", cn:"左前转向节总成", desc:"用于转向和支撑车轮", words:[
+    {w:"Front", cn:"前", phonetic:"/frʌnt/"},
+    {w:"Left", cn:"左", phonetic:"/lɛft/"},
+    {w:"Steering", cn:"转向", phonetic:"/ˈstɪrɪŋ/"},
+    {w:"Knuckle", cn:"转向节", phonetic:"/ˈnʌkəl/"},
+    {w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+  ]},
+
+  {text:"Front Left Outrigger Assembly", phonetic:"/frʌnt lɛft ˈaʊtrɪɡər əˈsɛmbli/", cn:"左前支腿总成", desc:"用于支撑设备稳定", words:[
+    {w:"Front", cn:"前", phonetic:"/frʌnt/"},
+    {w:"Left", cn:"左", phonetic:"/lɛft/"},
+    {w:"Outrigger", cn:"支腿", phonetic:"/ˈaʊtrɪɡər/"},
+    {w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+  ]},
+
+  {text:"Front Right Outrigger Assembly", phonetic:"/frʌnt raɪt ˈaʊtrɪɡər əˈsɛmbli/", cn:"右前支腿总成", desc:"用于支撑设备稳定", words:[
+    {w:"Front", cn:"前", phonetic:"/frʌnt/"},
+    {w:"Right", cn:"右", phonetic:"/raɪt/"},
+    {w:"Outrigger", cn:"支腿", phonetic:"/ˈaʊtrɪɡər/"},
+    {w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+  ]},
+
+  {text:"Front Right Steering Knuckle Assembly", phonetic:"/frʌnt raɪt ˈstɪrɪŋ ˈnʌkəl əˈsɛmbli/", cn:"右前转向节总成", desc:"用于转向和支撑车轮", words:[
+    {w:"Front", cn:"前", phonetic:"/frʌnt/"},
+    {w:"Right", cn:"右", phonetic:"/raɪt/"},
+    {w:"Steering", cn:"转向", phonetic:"/ˈstɪrɪŋ/"},
+    {w:"Knuckle", cn:"转向节", phonetic:"/ˈnʌkəl/"},
+    {w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+  ]},
+
+  {text:"Gearbox", phonetic:"/ˈɡɪrbɒks/", cn:"减速机", desc:"用于降低转速并传递扭矩"},
+
+  {text:"Nut", phonetic:"/nʌt/", cn:"螺母", desc:"用于配合螺栓紧固"},
+
+  {text:"Washer", phonetic:"/ˈwɒʃər/", cn:"垫圈", desc:"用于分散压力、防松"},
+
+  {text:"Bolt", phonetic:"/boʊlt/", cn:"螺栓", desc:"用于连接和紧固零件"},
+
+  {text:"Chassis Assembly", phonetic:"/ˈʃæsɪs əˈsɛmbli/", cn:"车架总成", desc:"车辆的主体结构", words:[
+    {w:"Chassis", cn:"车架", phonetic:"/ˈʃæsɪs/"},
+    {w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>
+      `).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+
+</body>
+</html>
