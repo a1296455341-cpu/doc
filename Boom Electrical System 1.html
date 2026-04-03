@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electrical Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:800px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  {
+    text:"Upper Boom Control Harness",
+    phonetic:"/ˈʌpər buːm kənˈtroʊl ˈhɑːrnəs/",
+    cn:"上臂控制线束",
+    desc:"连接上臂各电气元件并传输控制信号和电源的线束",
+    words:[
+      {w:"Upper",p:"/ˈʌpər/",cn:"上部"},
+      {w:"Boom",p:"/buːm/",cn:"臂架"},
+      {w:"Control",p:"/kənˈtroʊl/",cn:"控制"},
+      {w:"Harness",p:"/ˈhɑːrnəs/",cn:"线束"}
+    ]
+  },
+  {
+    text:"Boom Sensor Harness",
+    phonetic:"/buːm ˈsensər ˈhɑːrnəs/",
+    cn:"臂架传感器线束",
+    desc:"用于连接臂架传感器与控制系统的电气线束",
+    words:[
+      {w:"Boom",p:"/buːm/",cn:"臂架"},
+      {w:"Sensor",p:"/ˈsensər/",cn:"传感器"},
+      {w:"Harness",p:"/ˈhɑːrnəs/",cn:"线束"}
+    ]
+  },
+  {
+    text:"Harness",
+    phonetic:"/ˈhɑːrnəs/",
+    cn:"线束",
+    desc:"由多根导线组成，用于集中连接电气系统各部件"
+  },
+  {
+    text:"Draw Wire Sensor",
+    phonetic:"/drɔː waɪər ˈsensər/",
+    cn:"拉线传感器",
+    desc:"通过拉线伸缩检测位移或长度变化的传感器",
+    words:[
+      {w:"Draw",p:"/drɔː/",cn:"拉"},
+      {w:"Wire",p:"/waɪər/",cn:"线"},
+      {w:"Sensor",p:"/ˈsensər/",cn:"传感器"}
+    ]
+  },
+  {
+    text:"Angle Sensor Base",
+    phonetic:"/ˈæŋɡəl ˈsensər beɪs/",
+    cn:"角度传感器固定座",
+    desc:"用于安装和固定角度传感器的支撑部件",
+    words:[
+      {w:"Angle",p:"/ˈæŋɡəl/",cn:"角度"},
+      {w:"Sensor",p:"/ˈsensər/",cn:"传感器"},
+      {w:"Base",p:"/beɪs/",cn:"底座"}
+    ]
+  },
+  {
+    text:"Angle Sensor",
+    phonetic:"/ˈæŋɡəl ˈsensər/",
+    cn:"角度传感器",
+    desc:"用于检测设备角度变化并输出信号",
+    words:[
+      {w:"Angle",p:"/ˈæŋɡəl/",cn:"角度"},
+      {w:"Sensor",p:"/ˈsensər/",cn:"传感器"}
+    ]
+  },
+  {
+    text:"Wire Clamp",
+    phonetic:"/waɪər klæmp/",
+    cn:"线夹",
+    desc:"用于固定和整理电线，防止松动或磨损",
+    words:[
+      {w:"Wire",p:"/waɪər/",cn:"电线"},
+      {w:"Clamp",p:"/klæmp/",cn:"夹"}
+    ]
+  },
+  {
+    text:"Proximity Switch",
+    phonetic:"/ˌprɑːkˈsɪmɪti swɪtʃ/",
+    cn:"接近开关",
+    desc:"用于检测物体接近并输出开关信号的传感器",
+    words:[
+      {w:"Proximity",p:"/ˌprɑːkˈsɪmɪti/",cn:"接近"},
+      {w:"Switch",p:"/swɪtʃ/",cn:"开关"}
+    ]
+  },
+  {
+    text:"Washer",
+    phonetic:"/ˈwɑːʃər/",
+    cn:"垫圈",
+    desc:"用于分散压力、防止松动的机械紧固件"
+  },
+  {
+    text:"Spring Washer",
+    phonetic:"/sprɪŋ ˈwɑːʃər/",
+    cn:"弹簧垫圈",
+    desc:"具有弹性，用于防止螺栓松动",
+    words:[
+      {w:"Spring",p:"/sprɪŋ/",cn:"弹簧"},
+      {w:"Washer",p:"/ˈwɑːʃər/",cn:"垫圈"}
+    ]
+  },
+  {
+    text:"Nut",
+    phonetic:"/nʌt/",
+    cn:"螺母",
+    desc:"与螺栓配合使用的紧固件"
+  },
+  {
+    text:"Mounting Base",
+    phonetic:"/ˈmaʊntɪŋ beɪs/",
+    cn:"固定座",
+    desc:"用于安装和固定设备或部件的基础支撑件",
+    words:[
+      {w:"Mounting",p:"/ˈmaʊntɪŋ/",cn:"安装"},
+      {w:"Base",p:"/beɪs/",cn:"底座"}
+    ]
+  },
+  {
+    text:"Screw",
+    phonetic:"/skruː/",
+    cn:"螺钉",
+    desc:"用于连接和固定部件的紧固件"
+  },
+  {
+    text:"Bolt",
+    phonetic:"/boʊlt/",
+    cn:"螺栓",
+    desc:"与螺母配合使用的机械紧固件"
+  },
+  {
+    text:"Pipe Clamp",
+    phonetic:"/paɪp klæmp/",
+    cn:"管夹",
+    desc:"用于固定管道或软管的夹持装置",
+    words:[
+      {w:"Pipe",p:"/paɪp/",cn:"管"},
+      {w:"Clamp",p:"/klæmp/",cn:"夹"}
+    ]
+  },
+  {
+    text:"Lower Boom Control Harness",
+    phonetic:"/ˈloʊər buːm kənˈtroʊl ˈhɑːrnəs/",
+    cn:"下臂控制线束",
+    desc:"连接下臂各电气元件并传输控制信号和电源的线束",
+    words:[
+      {w:"Lower",p:"/ˈloʊər/",cn:"下部"},
+      {w:"Boom",p:"/buːm/",cn:"臂架"},
+      {w:"Control",p:"/kənˈtroʊl/",cn:"控制"},
+      {w:"Harness",p:"/ˈhɑːrnəs/",cn:"线束"}
+    ]
+  }
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.p}</span>
+          <span class="small">${w.cn}</span>
+        </span>
+      `).join("");
+    }
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
