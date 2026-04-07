@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cylinder Full System Vocabulary</title>
+
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:820px; margin:auto; }
+
+.item {
+  background:#fff;
+  padding:12px;
+  margin-bottom:12px;
+  border-radius:10px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+
+.word {
+  display:block;
+  margin-left:10px;
+  margin-top:4px;
+}
+
+.btn { cursor:pointer; color:#1a73e8; }
+
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+  {
+    text:"Cylinder Barrel Assembly",
+    phonetic:"/ˈsɪlɪndər ˈbærəl əˈsɛmbli/",
+    cn:"缸筒总成",
+    desc:"液压油缸外筒承压结构总成",
+    words:[
+      {w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/"},
+      {w:"Barrel", cn:"缸筒", phonetic:"/ˈbærəl/"},
+      {w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+    ]
+  },
+
+  {
+    text:"Piston Rod Assembly",
+    phonetic:"/ˈpɪstən rɒd əˈsɛmbli/",
+    cn:"活塞杆总成",
+    desc:"传递液压推力的运动输出部件",
+    words:[
+      {w:"Piston", cn:"活塞", phonetic:"/ˈpɪstən/"},
+      {w:"Rod", cn:"杆", phonetic:"/rɒd/"},
+      {w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+    ]
+  },
+
+  {
+    text:"Cylinder Head",
+    phonetic:"/ˈsɪlɪndər hɛd/",
+    cn:"缸盖",
+    desc:"封闭油缸端部并安装密封与导向结构",
+    words:[
+      {w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/"},
+      {w:"Head", cn:"端盖", phonetic:"/hɛd/"}
+    ]
+  },
+
+  {
+    text:"Bushing",
+    phonetic:"/ˈbʊʃɪŋ/",
+    cn:"衬套 / 轴套",
+    desc:"用于支撑轴或减少摩擦的耐磨部件"
+  },
+
+  {
+    text:"Internal Retaining Ring",
+    phonetic:"/ɪnˈtɜːrnəl rɪˈteɪnɪŋ rɪŋ/",
+    cn:"钢丝挡圈（孔用）",
+    desc:"安装在孔内用于轴向固定零件",
+    words:[
+      {w:"Internal", cn:"内部的", phonetic:"/ɪnˈtɜːrnəl/"},
+      {w:"Retaining", cn:"固定的", phonetic:"/rɪˈteɪnɪŋ/"},
+      {w:"Ring", cn:"挡圈", phonetic:"/rɪŋ/"}
+    ]
+  },
+
+  {
+    text:"Cushion Sleeve",
+    phonetic:"/ˈkʊʃən sliːv/",
+    cn:"缓冲套",
+    desc:"用于减少冲击、吸收能量的缓冲结构",
+    words:[
+      {w:"Cushion", cn:"缓冲", phonetic:"/ˈkʊʃən/"},
+      {w:"Sleeve", cn:"套筒", phonetic:"/sliːv/"}
+    ]
+  },
+
+  {
+    text:"Piston",
+    phonetic:"/ˈpɪstən/",
+    cn:"活塞",
+    desc:"在油缸内往复运动并传递压力"
+  },
+
+  {
+    text:"Steel Ball",
+    phonetic:"/stiːl bɔːl/",
+    cn:"钢球",
+    desc:"用于定位、锁止或轴承结构中的滚动元件",
+    words:[
+      {w:"Steel", cn:"钢", phonetic:"/stiːl/"},
+      {w:"Ball", cn:"球", phonetic:"/bɔːl/"}
+    ]
+  },
+
+  {
+    text:"Screw",
+    phonetic:"/skruː/",
+    cn:"螺钉",
+    desc:"用于零部件连接的螺纹紧固件"
+  },
+
+  {
+    text:"Retaining Ring",
+    phonetic:"/rɪˈteɪnɪŋ rɪŋ/",
+    cn:"挡环",
+    desc:"用于轴向定位和固定零件",
+    words:[
+      {w:"Retaining", cn:"固定的", phonetic:"/rɪˈteɪnɪŋ/"},
+      {w:"Ring", cn:"环", phonetic:"/rɪŋ/"}
+    ]
+  },
+
+  {
+    text:"Washer",
+    phonetic:"/ˈwɒʃər/",
+    cn:"垫片",
+    desc:"用于分散压力、防松或调整间隙"
+  },
+
+  {
+    text:"Protective Sleeve",
+    phonetic:"/prəˈtɛktɪv sliːv/",
+    cn:"护套",
+    desc:"用于保护活塞杆或部件防磨损",
+    words:[
+      {w:"Protective", cn:"防护的", phonetic:"/prəˈtɛktɪv/"},
+      {w:"Sleeve", cn:"套筒", phonetic:"/sliːv/"}
+    ]
+  },
+
+  {
+    text:"Clamp",
+    phonetic:"/klæmp/",
+    cn:"喉箍",
+    desc:"用于固定软管或圆形管件"
+  },
+
+  {
+    text:"Check Valve",
+    phonetic:"/tʃɛk vælv/",
+    cn:"单向阀",
+    desc:"允许液体单向流动、防止回流",
+    words:[
+      {w:"Check", cn:"单向/止回", phonetic:"/tʃɛk/"},
+      {w:"Valve", cn:"阀", phonetic:"/vælv/"}
+    ]
+  },
+
+  {
+    text:"Spring",
+    phonetic:"/sprɪŋ/",
+    cn:"弹簧",
+    desc:"提供弹性恢复力的机械元件"
+  },
+
+  {
+    text:"Plug",
+    phonetic:"/plʌɡ/",
+    cn:"螺堵",
+    desc:"用于封堵油口或螺纹孔"
+  },
+
+  {
+    text:"Service Kit",
+    phonetic:"/ˈsɜːrvɪs kɪt/",
+    cn:"密封件维修包",
+    desc:"用于维修更换液压系统密封件的套件",
+    words:[
+      {w:"Service", cn:"维修/服务", phonetic:"/ˈsɜːrvɪs/"},
+      {w:"Kit", cn:"套件", phonetic:"/kɪt/"}
+    ]
+  }
+
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>
+      `).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+
+</body>
+</html>
