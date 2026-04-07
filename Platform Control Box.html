@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Control Panel Vocabulary</title>
+
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:820px; margin:auto; }
+
+.item {
+  background:#fff;
+  padding:12px;
+  margin-bottom:12px;
+  border-radius:10px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+
+.word {
+  display:block;
+  margin-left:10px;
+  margin-top:4px;
+}
+
+.btn { cursor:pointer; color:#1a73e8; }
+
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+  {
+    text:"Control Box",
+    phonetic:"/kənˈtroʊl bɒks/",
+    cn:"控制柜",
+    desc:"用于集中控制设备电气系统的控制柜",
+    words:[
+      {w:"Control", cn:"控制", phonetic:"/kənˈtroʊl/"},
+      {w:"Box", cn:"箱/柜", phonetic:"/bɒks/"}
+    ]
+  },
+
+  {
+    text:"Silicone Plug",
+    phonetic:"/ˈsɪlɪkoʊn plʌɡ/",
+    cn:"硅胶塞子",
+    desc:"用于密封孔位、防尘防水的橡胶塞",
+    words:[
+      {w:"Silicone", cn:"硅胶", phonetic:"/ˈsɪlɪkoʊn/"},
+      {w:"Plug", cn:"塞子", phonetic:"/plʌɡ/"}
+    ]
+  },
+
+  {
+    text:"Emergency Stop Button",
+    phonetic:"/ɪˈmɜːrʤənsi stɒp ˈbʌtn/",
+    cn:"急停按钮",
+    desc:"紧急情况下快速切断设备电源的安全按钮",
+    words:[
+      {w:"Emergency", cn:"紧急", phonetic:"/ɪˈmɜːrʤənsi/"},
+      {w:"Stop", cn:"停止", phonetic:"/stɒp/"},
+      {w:"Button", cn:"按钮", phonetic:"/ˈbʌtn/"}
+    ]
+  },
+
+  {
+    text:"Rotary Switch",
+    phonetic:"/ˈroʊtəri swɪtʃ/",
+    cn:"旋钮开关",
+    desc:"通过旋转实现电路切换的开关",
+    words:[
+      {w:"Rotary", cn:"旋转式", phonetic:"/ˈroʊtəri/"},
+      {w:"Switch", cn:"开关", phonetic:"/swɪtʃ/"}
+    ]
+  },
+
+  {
+    text:"Buzzer",
+    phonetic:"/ˈbʌzər/",
+    cn:"蜂鸣器",
+    desc:"用于发出报警或提示声音的装置"
+  },
+
+  {
+    text:"Toggle Switch",
+    phonetic:"/ˈtɒɡl swɪtʃ/",
+    cn:"钮子开关",
+    desc:"通过拨动实现通断控制的开关",
+    words:[
+      {w:"Toggle", cn:"拨动", phonetic:"/ˈtɒɡl/"},
+      {w:"Switch", cn:"开关", phonetic:"/swɪtʃ/"}
+    ]
+  },
+
+  {
+    text:"Waterproof Cap",
+    phonetic:"/ˈwɔːtərpruːf kæp/",
+    cn:"防水帽",
+    desc:"用于保护接口防水防尘的盖帽",
+    words:[
+      {w:"Waterproof", cn:"防水的", phonetic:"/ˈwɔːtərpruːf/"},
+      {w:"Cap", cn:"盖帽", phonetic:"/kæp/"}
+    ]
+  },
+
+  {
+    text:"Display Screen",
+    phonetic:"/dɪˈspleɪ skriːn/",
+    cn:"显示控制屏",
+    desc:"用于显示设备状态和操作信息的屏幕",
+    words:[
+      {w:"Display", cn:"显示", phonetic:"/dɪˈspleɪ/"},
+      {w:"Screen", cn:"屏幕", phonetic:"/skriːn/"}
+    ]
+  },
+
+  {
+    text:"Platform Control Box Harness",
+    phonetic:"/ˈplætfɔːrm kənˈtroʊl bɒks ˈhɑːrnɪs/",
+    cn:"平台控制箱线束",
+    desc:"连接平台控制箱各电气元件的线束",
+    words:[
+      {w:"Platform", cn:"平台", phonetic:"/ˈplætfɔːrm/"},
+      {w:"Control", cn:"控制", phonetic:"/kənˈtroʊl/"},
+      {w:"Box", cn:"控制箱", phonetic:"/bɒks/"},
+      {w:"Harness", cn:"线束", phonetic:"/ˈhɑːrnɪs/"}
+    ]
+  }
+
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>
+      `).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+
+</body>
+</html>
