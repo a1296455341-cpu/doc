@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hydraulic Steering Components Vocabulary</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  {
+    text:"Steering Valve Assembly",
+    phonetic:"/ˈstɪərɪŋ ˈvælv əˈsɛmbli/",
+    cn:"转向阀组",
+    desc:"用于控制液压转向系统的阀组总成",
+    words:[
+      {w:"Steering", cn:"转向的", phonetic:"/ˈstɪərɪŋ/"},
+      {w:"Valve", cn:"阀", phonetic:"/ˈvælv/"},
+      {w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+    ]
+  },
+  {
+    text:"End Straight Fitting",
+    phonetic:"/ɛnd streɪt ˈfɪtɪŋ/",
+    cn:"端直通接头",
+    desc:"用于连接管路的直通型接头",
+    words:[
+      {w:"End", cn:"端", phonetic:"/ɛnd/"},
+      {w:"Straight", cn:"直通", phonetic:"/streɪt/"},
+      {w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/"}
+    ]
+  },
+  {
+    text:"Washer",
+    phonetic:"/ˈwɒʃər/",
+    cn:"垫圈",
+    desc:"用于分散压力、防止松动"
+  },
+  {
+    text:"Bolt",
+    phonetic:"/boʊlt/",
+    cn:"螺栓",
+    desc:"用于结构件之间的连接紧固"
+  }
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`<span class="word btn" onclick="speak('${w.w}')">🔊 ${w.w} <span class="phonetic">${w.phonetic}</span> <span class="small">${w.cn}</span></span>`).join("");
+    }
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text} <span class="phonetic">${p.phonetic}</span> <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
