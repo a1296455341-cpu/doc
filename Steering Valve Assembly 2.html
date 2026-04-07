@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hydraulic Valve Components Vocabulary</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:900px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  {
+    text:"Flow Control Valve",
+    phonetic:"/floʊ kənˈtroʊl vælv/",
+    cn:"流量阀",
+    desc:"用于控制液压系统中油液流量的阀",
+    words:[
+      {w:"Flow", cn:"流量", phonetic:"/floʊ/"},
+      {w:"Control", cn:"控制", phonetic:"/kənˈtroʊl/"},
+      {w:"Valve", cn:"阀", phonetic:"/vælv/"}
+    ]
+  },
+  {
+    text:"Solenoid Valve",
+    phonetic:"/ˈsoʊlənɔɪd vælv/",
+    cn:"电磁阀",
+    desc:"通过电磁驱动来控制液体或气体流动的阀",
+    words:[
+      {w:"Solenoid", cn:"电磁的", phonetic:"/ˈsoʊlənɔɪd/"},
+      {w:"Valve", cn:"阀", phonetic:"/vælv/"}
+    ]
+  },
+  {
+    text:"Flow Divider Valve",
+    phonetic:"/floʊ dɪˈvaɪdər vælv/",
+    cn:"分流阀",
+    desc:"将流体分配到多个回路的阀",
+    words:[
+      {w:"Flow", cn:"流量", phonetic:"/floʊ/"},
+      {w:"Divider", cn:"分流器", phonetic:"/dɪˈvaɪdər/"},
+      {w:"Valve", cn:"阀", phonetic:"/vælv/"}
+    ]
+  },
+  {
+    text:"Pilot-operated Check Valve",
+    phonetic:"/ˈpaɪlət ˈɒpəreɪtɪd ʧɛk vælv/",
+    cn:"液控单向阀",
+    desc:"通过液压控制实现单向流动的阀",
+    words:[
+      {w:"Pilot-operated", cn:"液控的", phonetic:"/ˈpaɪlət ˈɒpəreɪtɪd/"},
+      {w:"Check", cn:"单向", phonetic:"/ʧɛk/"},
+      {w:"Valve", cn:"阀", phonetic:"/vælv/"}
+    ]
+  },
+  {
+    text:"Damper",
+    phonetic:"/ˈdæmpər/",
+    cn:"阻尼",
+    desc:"用于减缓液压系统流动变化或振动"
+  },
+  {
+    text:"Pressure Reducing Valve",
+    phonetic:"/ˈprɛʃər rɪˈdusɪŋ vælv/",
+    cn:"减压阀",
+    desc:"用于降低液压系统压力的阀",
+    words:[
+      {w:"Pressure", cn:"压力", phonetic:"/ˈprɛʃər/"},
+      {w:"Reducing", cn:"减压", phonetic:"/rɪˈdusɪŋ/"},
+      {w:"Valve", cn:"阀", phonetic:"/vælv/"}
+    ]
+  }
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`<span class="word btn" onclick="speak('${w.w}')">🔊 ${w.w} <span class="phonetic">${w.phonetic}</span> <span class="small">${w.cn}</span></span>`).join("");
+    }
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text} <span class="phonetic">${p.phonetic}</span> <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
