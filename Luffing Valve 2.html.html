@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hydraulic Valve Components</title>
+<style>
+body { font-family: Arial; background:#f4f6f8; padding:15px; }
+.container { max-width:700px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); }
+.title { font-weight:bold; cursor:pointer; color:#111; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; cursor:pointer; color:#1a73e8; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+const parts = [
+  {
+    text:"Relief Valve",
+    phonetic:"/rɪˈliːf vælv/",
+    cn:"溢流阀",
+    desc:"用于限制系统压力、防止过载的安全阀",
+    words:[
+      {w:"Relief", cn:"溢流/缓解", phonetic:"/rɪˈliːf/"},
+      {w:"Valve", cn:"阀", phonetic:"/vælv/"}
+    ]
+  },
+  {
+    text:"Check Valve",
+    phonetic:"/ʧɛk vælv/",
+    cn:"单向阀",
+    desc:"只允许液体单向流动，防止倒流",
+    words:[
+      {w:"Check", cn:"检查/防止倒流", phonetic:"/ʧɛk/"},
+      {w:"Valve", cn:"阀", phonetic:"/vælv/"}
+    ]
+  },
+  {
+    text:"Valve",
+    phonetic:"/vælv/",
+    cn:"阀体",
+    desc:"控制液体或气体流动的零件"
+  },
+  {
+    text:"Pressure Compensating Valve",
+    phonetic:"/ˈprɛʃər ˌkɒmpənˈseɪtɪŋ vælv/",
+    cn:"压力补偿阀",
+    desc:"用于维持系统流量和压力稳定的阀组",
+    words:[
+      {w:"Pressure", cn:"压力", phonetic:"/ˈprɛʃər/"},
+      {w:"Compensating", cn:"补偿的", phonetic:"/ˌkɒmpənˈseɪtɪŋ/"},
+      {w:"Valve", cn:"阀", phonetic:"/vælv/"}
+    ]
+  },
+  {
+    text:"Plug",
+    phonetic:"/plʌɡ/",
+    cn:"堵头",
+    desc:"用于封闭管路或孔口的零件"
+  },
+  {
+    text:"Damper",
+    phonetic:"/ˈdæmpər/",
+    cn:"阻尼",
+    desc:"用于减缓液体或气体流动、吸收振动的装置"
+  },
+  {
+    text:"O-ring",
+    phonetic:"/ˈoʊ rɪŋ/",
+    cn:"O型圈",
+    desc:"用于密封管道或零件接口的环形密封件"
+  },
+  {
+    text:"Solenoid Valve",
+    phonetic:"/ˈsoʊlənɔɪd vælv/",
+    cn:"电磁阀",
+    desc:"通过电磁驱动控制液体或气体流动的阀",
+    words:[
+      {w:"Solenoid", cn:"电磁的", phonetic:"/ˈsoʊlənɔɪd/"},
+      {w:"Valve", cn:"阀", phonetic:"/vælv/"}
+    ]
+  }
+];
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className='item';
+
+    let wordsHtml = '';
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word" onclick="speak('${w.w}')">
+        🔊 ${w.w} <span class="phonetic">${w.phonetic}</span> <span class="small">${w.cn}</span>
+        </span>
+      `).join('');
+    }
+
+    item.innerHTML = `
+      <div class="title" onclick="speak('${p.text}')">
+        🔊 ${p.text} <span class="phonetic">${p.phonetic}</span> <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
