@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hydraulic Valve & Hose Vocabulary</title>
+<style>
+body { font-family: Arial; background:#f4f6f8; padding:15px; }
+.container { max-width:820px; margin:auto; }
+
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08); }
+.title { font-weight:bold; cursor:pointer; color:#111; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; cursor:pointer; color:#1a73e8; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+const data = [
+{
+text:"Telescopic Balance Valve Assembly",
+phonetic:"/ˌtelɪˈskɒpɪk ˈbæləns vælv əˈsɛmbli/",
+cn:"伸缩平衡阀总成",
+desc:"用于控制伸缩臂回路的平衡阀组件",
+words:[
+{w:"Telescopic", cn:"伸缩的", phonetic:"/ˌtelɪˈskɒpɪk/"},
+{w:"Balance", cn:"平衡", phonetic:"/ˈbæləns/"},
+{w:"Valve", cn:"阀", phonetic:"/vælv/"},
+{w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+]
+},
+{
+text:"Hose Assembly",
+phonetic:"/hoʊs əˈsɛmbli/",
+cn:"胶管总成",
+desc:"液压管路的整体软管组件",
+words:[
+{w:"Hose", cn:"胶管", phonetic:"/hoʊs/"},
+{w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+]
+},
+{
+text:"Bulkhead Fitting",
+phonetic:"/ˈbʊlkˌhɛd ˈfɪtɪŋ/",
+cn:"隔板式接头",
+desc:"管路穿过隔板使用的接头",
+words:[
+{w:"Bulkhead", cn:"隔板", phonetic:"/ˈbʊlkˌhɛd/"},
+{w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/"}
+]
+},
+{
+text:"Clamp",
+phonetic:"/klæmp/",
+cn:"管夹",
+desc:"固定管路的夹具"
+},
+{
+text:"Clamping Plate",
+phonetic:"/ˈklæmpɪŋ pleɪt/",
+cn:"压板",
+desc:"固定管路或组件的板材",
+words:[
+{w:"Clamping", cn:"固定用的", phonetic:"/ˈklæmpɪŋ/"},
+{w:"Plate", cn:"板", phonetic:"/pleɪt/"}
+]
+},
+{
+text:"Screw",
+phonetic:"/skruː/",
+cn:"螺钉",
+desc:"紧固用的小螺纹件"
+},
+{
+text:"Washer",
+phonetic:"/ˈwɒʃər/",
+cn:"垫圈",
+desc:"分散压力、防松用"
+},
+{
+text:"Straight Fitting",
+phonetic:"/streɪt ˈfɪtɪŋ/",
+cn:"直通接头",
+desc:"直线型管路连接件",
+words:[
+{w:"Straight", cn:"直通", phonetic:"/streɪt/"},
+{w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/"}
+]
+},
+{
+text:"Hose",
+phonetic:"/hoʊs/",
+cn:"胶管",
+desc:"液压软管"
+},
+{
+text:"Steel Pipe Assembly",
+phonetic:"/stiːl paɪp əˈsɛmbli/",
+cn:"钢管总成",
+desc:"钢质管路组件",
+words:[
+{w:"Steel", cn:"钢", phonetic:"/stiːl/"},
+{w:"Pipe", cn:"管", phonetic:"/paɪp/"},
+{w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+]
+},
+{
+text:"Luffing Balance Valve Assembly",
+phonetic:"/ˈlʌfɪŋ ˈbæləns vælv əˈsɛmbli/",
+cn:"变幅平衡阀总成",
+desc:"控制变幅臂回路的平衡阀组件",
+words:[
+{w:"Luffing", cn:"变幅的", phonetic:"/ˈlʌfɪŋ/"},
+{w:"Balance", cn:"平衡", phonetic:"/ˈbæləns/"},
+{w:"Valve", cn:"阀", phonetic:"/vælv/"},
+{w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+]
+},
+{
+text:"Balance Valve Assembly",
+phonetic:"/ˈbæləns vælv əˈsɛmbli/",
+cn:"平衡阀总成",
+desc:"液压回路的平衡阀组件",
+words:[
+{w:"Balance", cn:"平衡", phonetic:"/ˈbæləns/"},
+{w:"Valve", cn:"阀", phonetic:"/vælv/"},
+{w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+]
+},
+{
+text:"Straight Bulkhead Fitting",
+phonetic:"/streɪt ˈbʊlkˌhɛd ˈfɪtɪŋ/",
+cn:"直通隔板式接头",
+desc:"直通型隔板穿管接头",
+words:[
+{w:"Straight", cn:"直通", phonetic:"/streɪt/"},
+{w:"Bulkhead", cn:"隔板", phonetic:"/ˈbʊlkˌhɛd/"},
+{w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/"}
+]
+},
+{
+text:"End Straight Fitting",
+phonetic:"/ɛnd streɪt ˈfɪtɪŋ/",
+cn:"端直通接头",
+desc:"端部直通型管路接头",
+words:[
+{w:"End", cn:"端", phonetic:"/ɛnd/"},
+{w:"Straight", cn:"直通", phonetic:"/streɪt/"},
+{w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/"}
+]
+},
+{
+text:"Platform Valve Group",
+phonetic:"/ˈplætfɔːrm vælv ɡruːp/",
+cn:"平台阀组总成",
+desc:"工作平台液压控制阀组",
+words:[
+{w:"Platform", cn:"平台", phonetic:"/ˈplætfɔːrm/"},
+{w:"Valve", cn:"阀", phonetic:"/vælv/"},
+{w:"Group", cn:"组", phonetic:"/ɡruːp/"}
+]
+}
+];
+
+function render(){
+const container = document.querySelector(".container");
+data.forEach(item=>{
+const div = document.createElement("div");
+div.className="item";
+
+let wordsHtml="";
+if(item.words){
+wordsHtml = item.words.map(w=>`
+<div class="word" onclick="speak('${w.w}')">
+🔊 ${w.w} <span class="phonetic">${w.phonetic}</span> <span class="small">${w.cn}</span>
+</div>`).join("");
+}
+
+div.innerHTML=`
+<div class="title" onclick="speak('${item.text}')">
+🔊 ${item.text} <span class="phonetic">${item.phonetic}</span> <span class="small">${item.cn}</span>
+</div>
+<div class="desc">${item.desc}</div>
+${wordsHtml}
+`;
+container.appendChild(div);
+});
+}
+
+render();
+</script>
+</body>
+</html>
