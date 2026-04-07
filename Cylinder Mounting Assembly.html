@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hydraulic Cylinders Vocabulary</title>
+
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:820px; margin:auto; }
+
+.item {
+  background:#fff;
+  padding:12px;
+  margin-bottom:12px;
+  border-radius:10px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+
+.word {
+  display:block;
+  margin-left:10px;
+  margin-top:4px;
+}
+
+.btn { cursor:pointer; color:#1a73e8; }
+
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+  {
+    text:"Luffing Cylinder",
+    phonetic:"/ˈlʌfɪŋ ˈsɪlɪndər/",
+    cn:"变幅油缸",
+    desc:"用于控制臂架俯仰角度变化的液压油缸",
+    words:[
+      {w:"Luffing", cn:"变幅/俯仰", phonetic:"/ˈlʌfɪŋ/"},
+      {w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/"}
+    ]
+  },
+
+  {
+    text:"Steering Cylinder",
+    phonetic:"/ˈstɪrɪŋ ˈsɪlɪndər/",
+    cn:"转向油缸",
+    desc:"用于控制车辆或设备转向动作的液压油缸",
+    words:[
+      {w:"Steering", cn:"转向", phonetic:"/ˈstɪrɪŋ/"},
+      {w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/"}
+    ]
+  },
+
+  {
+    text:"Axle Telescopic Cylinder",
+    phonetic:"/ˈæksəl ˌtelɪˈskɒpɪk ˈsɪlɪndər/",
+    cn:"轴伸缩油缸",
+    desc:"用于实现车轴或结构件伸缩调节的液压油缸",
+    words:[
+      {w:"Axle", cn:"车轴", phonetic:"/ˈæksəl/"},
+      {w:"Telescopic", cn:"伸缩的", phonetic:"/ˌtelɪˈskɒpɪk/"},
+      {w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/"}
+    ]
+  },
+
+  {
+    text:"Telescopic Cylinder",
+    phonetic:"/ˌtelɪˈskɒpɪk ˈsɪlɪndər/",
+    cn:"伸缩油缸",
+    desc:"用于实现多级伸缩动作的液压油缸",
+    words:[
+      {w:"Telescopic", cn:"伸缩的", phonetic:"/ˌtelɪˈskɒpɪk/"},
+      {w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/"}
+    ]
+  },
+
+  {
+    text:"Jib Cylinder",
+    phonetic:"/dʒɪb ˈsɪlɪndər/",
+    cn:"飞臂油缸",
+    desc:"用于控制辅助小臂（飞臂）动作的液压油缸",
+    words:[
+      {w:"Jib", cn:"飞臂/副臂", phonetic:"/dʒɪb/"},
+      {w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/"}
+    ]
+  },
+
+  {
+    text:"Leveling Cylinder",
+    phonetic:"/ˈlevəlɪŋ ˈsɪlɪndər/",
+    cn:"调平油缸",
+    desc:"用于平台或结构调平控制的液压油缸",
+    words:[
+      {w:"Leveling", cn:"调平", phonetic:"/ˈlevəlɪŋ/"},
+      {w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/"}
+    ]
+  }
+
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>
+      `).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+
+</body>
+</html>
