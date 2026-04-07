@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hydraulic System Vocabulary</title>
+
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:820px; margin:auto; }
+
+.item {
+  background:#fff;
+  padding:12px;
+  margin-bottom:12px;
+  border-radius:10px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+
+.word {
+  display:block;
+  margin-left:10px;
+  margin-top:4px;
+}
+
+.btn { cursor:pointer; color:#1a73e8; }
+
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+  {
+    text:"Cylinder Mounting Assembly",
+    phonetic:"/ˈsɪlɪndər ˈmaʊntɪŋ əˈsɛmbli/",
+    cn:"油缸安装总成",
+    desc:"用于固定液压油缸并连接结构件的安装组件",
+    words:[
+      {w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/"},
+      {w:"Mounting", cn:"安装", phonetic:"/ˈmaʊntɪŋ/"},
+      {w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+    ]
+  },
+
+  {
+    text:"Telescopic Boom Hydraulic Assembly",
+    phonetic:"/ˌtelɪˈskɒpɪk buːm haɪˈdrɔːlɪk əˈsɛmbli/",
+    cn:"臂架液压系统",
+    desc:"为伸缩臂架提供动力与控制的液压系统",
+    words:[
+      {w:"Telescopic", cn:"伸缩的", phonetic:"/ˌtelɪˈskɒpɪk/"},
+      {w:"Boom", cn:"臂架", phonetic:"/buːm/"},
+      {w:"Hydraulic", cn:"液压的", phonetic:"/haɪˈdrɔːlɪk/"},
+      {w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+    ]
+  },
+
+  {
+    text:"Chassis Hose Assembly",
+    phonetic:"/ˈʃæsi hoʊz əˈsɛmbli/",
+    cn:"底盘管路总成",
+    desc:"安装在底盘上的液压管路总成，用于输送液压油",
+    words:[
+      {w:"Chassis", cn:"底盘", phonetic:"/ˈʃæsi/"},
+      {w:"Hose", cn:"软管", phonetic:"/hoʊz/"},
+      {w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+    ]
+  },
+
+  {
+    text:"Turntable Hydraulic Assembly",
+    phonetic:"/ˈtɜːrnˌteɪbəl haɪˈdrɔːlɪk əˈsɛmbli/",
+    cn:"转台液压总成",
+    desc:"用于转台回转与动作控制的液压系统",
+    words:[
+      {w:"Turntable", cn:"转台", phonetic:"/ˈtɜːrnˌteɪbəl/"},
+      {w:"Hydraulic", cn:"液压的", phonetic:"/haɪˈdrɔːlɪk/"},
+      {w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+    ]
+  }
+
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>
+      `).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+
+</body>
+</html>
