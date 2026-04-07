@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cylinder Core Vocabulary</title>
+
+<style>
+body { font-family: Arial; background:#f4f6f8; padding:15px; }
+.container { max-width:820px; margin:auto; }
+
+.item {
+  background:#fff;
+  padding:12px;
+  margin-bottom:12px;
+  border-radius:10px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+
+.title { font-weight:bold; cursor:pointer; color:#111; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+
+.word {
+  display:block;
+  margin-left:10px;
+  margin-top:4px;
+  cursor:pointer;
+  color:#1a73e8;
+}
+
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+</style>
+</head>
+
+<body>
+<div class="container"></div>
+
+<script>
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+const data = [
+
+{
+text:"Cylinder Barrel Assembly",
+phonetic:"/ˈsɪlɪndər ˈbærəl əˈsɛmbli/",
+cn:"缸筒总成",
+desc:"油缸外筒承压结构",
+words:[
+{w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/"},
+{w:"Barrel", cn:"缸筒", phonetic:"/ˈbærəl/"},
+{w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+]
+},
+
+{
+text:"Piston Rod Assembly",
+phonetic:"/ˈpɪstən rɒd əˈsɛmbli/",
+cn:"活塞杆总成",
+desc:"输出动力的往复运动结构",
+words:[
+{w:"Piston", cn:"活塞", phonetic:"/ˈpɪstən/"},
+{w:"Rod", cn:"杆", phonetic:"/rɒd/"},
+{w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+]
+},
+
+{
+text:"Cylinder Head",
+phonetic:"/ˈsɪlɪndər hɛd/",
+cn:"缸盖",
+desc:"密封端部结构",
+words:[
+{w:"Cylinder", cn:"油缸", phonetic:"/ˈsɪlɪndər/"},
+{w:"Head", cn:"端盖", phonetic:"/hɛd/"}
+]
+},
+
+{
+text:"Bushing",
+phonetic:"/ˈbʊʃɪŋ/",
+cn:"衬套 / 轴套",
+desc:"减少摩擦的耐磨件"
+},
+
+{
+text:"Internal Retaining Ring",
+phonetic:"/ɪnˈtɜːrnəl rɪˈteɪnɪŋ rɪŋ/",
+cn:"钢丝挡圈（孔用）",
+desc:"孔内轴向固定件",
+words:[
+{w:"Internal", cn:"内部", phonetic:"/ɪnˈtɜːrnəl/"},
+{w:"Retaining", cn:"固定", phonetic:"/rɪˈteɪnɪŋ/"},
+{w:"Ring", cn:"挡圈", phonetic:"/rɪŋ/"}
+]
+},
+
+{
+text:"Piston",
+phonetic:"/ˈpɪstən/",
+cn:"活塞",
+desc:"压力转换运动核心件"
+},
+
+{
+text:"Steel Ball",
+phonetic:"/stiːl bɔːl/",
+cn:"钢球",
+desc:"定位/滚动元件",
+words:[
+{w:"Steel", cn:"钢", phonetic:"/stiːl/"},
+{w:"Ball", cn:"球", phonetic:"/bɔːl/"}
+]
+},
+
+{
+text:"Screw",
+phonetic:"/skruː/",
+cn:"螺钉",
+desc:"紧固连接件"
+},
+
+{
+text:"Protective Sleeve",
+phonetic:"/prəˈtɛktɪv sliːv/",
+cn:"护套",
+desc:"防磨损保护结构",
+words:[
+{w:"Protective", cn:"保护", phonetic:"/prəˈtɛktɪv/"},
+{w:"Sleeve", cn:"套", phonetic:"/sliːv/"}
+]
+},
+
+{
+text:"Clamp",
+phonetic:"/klæmp/",
+cn:"喉箍",
+desc:"管路固定件"
+},
+
+{
+text:"Service Kit",
+phonetic:"/ˈsɜːrvɪs kɪt/",
+cn:"密封件维修包",
+desc:"维修密封系统套件",
+words:[
+{w:"Service", cn:"维修", phonetic:"/ˈsɜːrvɪs/"},
+{w:"Kit", cn:"套件", phonetic:"/kɪt/"}
+]
+}
+
+];
+
+function render(){
+const container = document.querySelector(".container");
+
+data.forEach(item=>{
+const div = document.createElement("div");
+div.className = "item";
+
+let words = "";
+if(item.words){
+words = item.words.map(w=>`
+<div class="word" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</div>
+`).join("");
+}
+
+div.innerHTML = `
+<div class="title" onclick="speak('${item.text}')">
+🔊 ${item.text}
+<span class="phonetic">${item.phonetic}</span>
+<span class="small">${item.cn}</span>
+</div>
+<div class="desc">${item.desc}</div>
+${words}
+`;
+
+container.appendChild(div);
+});
+}
+
+render();
+</script>
+
+</body>
+</html>
