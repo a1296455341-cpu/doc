@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hydraulic Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:800px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  {
+    text:"Reservoir Weldment Assembly",
+    phonetic:"/ˈrezərvwɑːr ˈwɛldmənt əˈsɛmbli/",
+    cn:"油箱焊接总成",
+    desc:"由焊接结构组成的液压油箱总成，用于储存液压油",
+    words:[
+      {w:"Reservoir",p:"/ˈrezərvwɑːr/",cn:"油箱"},
+      {w:"Weldment",p:"/ˈwɛldmənt/",cn:"焊接结构"},
+      {w:"Assembly",p:"/əˈsɛmbli/",cn:"总成"}
+    ]
+  },
+  {
+    text:"Gasket",
+    phonetic:"/ˈɡæskɪt/",
+    cn:"密封垫",
+    desc:"用于密封连接面，防止液体或气体泄漏"
+  },
+  {
+    text:"Washer",
+    phonetic:"/ˈwɑːʃər/",
+    cn:"垫圈",
+    desc:"用于分散压力、防止连接件松动"
+  },
+  {
+    text:"Spring Washer",
+    phonetic:"/sprɪŋ ˈwɑːʃər/",
+    cn:"弹簧垫圈",
+    desc:"具有弹性，用于防止螺栓松动",
+    words:[
+      {w:"Spring",p:"/sprɪŋ/",cn:"弹簧"},
+      {w:"Washer",p:"/ˈwɑːʃər/",cn:"垫圈"}
+    ]
+  },
+  {
+    text:"Screw",
+    phonetic:"/skruː/",
+    cn:"螺钉",
+    desc:"用于连接和固定部件的紧固件"
+  },
+  {
+    text:"Flange Cover",
+    phonetic:"/flændʒ ˈkʌvər/",
+    cn:"法兰盖",
+    desc:"用于封闭法兰接口并提供密封保护",
+    words:[
+      {w:"Flange",p:"/flændʒ/",cn:"法兰"},
+      {w:"Cover",p:"/ˈkʌvər/",cn:"盖"}
+    ]
+  },
+  {
+    text:"Return Oil Filter",
+    phonetic:"/rɪˈtɜːrn ɔɪl ˈfɪltər/",
+    cn:"回油过滤器",
+    desc:"用于过滤回流液压油中的杂质",
+    words:[
+      {w:"Return",p:"/rɪˈtɜːrn/",cn:"回流"},
+      {w:"Oil",p:"/ɔɪl/",cn:"油"},
+      {w:"Filter",p:"/ˈfɪltər/",cn:"过滤器"}
+    ]
+  },
+  {
+    text:"End Straight Fitting",
+    phonetic:"/ɛnd streɪt ˈfɪtɪŋ/",
+    cn:"端直通接头",
+    desc:"用于管路末端直通连接的接头",
+    words:[
+      {w:"End",p:"/ɛnd/",cn:"端"},
+      {w:"Straight",p:"/streɪt/",cn:"直通"},
+      {w:"Fitting",p:"/ˈfɪtɪŋ/",cn:"接头"}
+    ]
+  },
+  {
+    text:"Air Filter",
+    phonetic:"/ɛr ˈfɪltər/",
+    cn:"空气滤清器",
+    desc:"用于过滤进入系统的空气杂质",
+    words:[
+      {w:"Air",p:"/ɛr/",cn:"空气"},
+      {w:"Filter",p:"/ˈfɪltər/",cn:"滤清器"}
+    ]
+  },
+  {
+    text:"Suction Filter",
+    phonetic:"/ˈsʌkʃən ˈfɪltər/",
+    cn:"吸油过滤器",
+    desc:"安装在吸油口，用于过滤进入系统的液压油",
+    words:[
+      {w:"Suction",p:"/ˈsʌkʃən/",cn:"吸入"},
+      {w:"Filter",p:"/ˈfɪltər/",cn:"过滤器"}
+    ]
+  },
+  {
+    text:"Three-way Union Fitting",
+    phonetic:"/ˈθriː weɪ ˈjuːnjən ˈfɪtɪŋ/",
+    cn:"三通组合接头",
+    desc:"用于三方向管路连接的组合接头",
+    words:[
+      {w:"Three-way",p:"/ˈθriː weɪ/",cn:"三通"},
+      {w:"Union",p:"/ˈjuːnjən/",cn:"接头"},
+      {w:"Fitting",p:"/ˈfɪtɪŋ/",cn:"连接件"}
+    ]
+  },
+  {
+    text:"90° Union Fitting",
+    phonetic:"/ˈnaɪnti dɪˈɡriː ˈjuːnjən ˈfɪtɪŋ/",
+    cn:"直角组合接头",
+    desc:"用于90度转向连接的管路接头",
+    words:[
+      {w:"90°",p:"/ˈnaɪnti dɪˈɡriː/",cn:"90度"},
+      {w:"Union",p:"/ˈjuːnjən/",cn:"接头"},
+      {w:"Fitting",p:"/ˈfɪtɪŋ/",cn:"连接件"}
+    ]
+  },
+  {
+    text:"Ball Valve",
+    phonetic:"/bɔːl vælv/",
+    cn:"球阀",
+    desc:"通过球体旋转实现开关控制的阀门",
+    words:[
+      {w:"Ball",p:"/bɔːl/",cn:"球"},
+      {w:"Valve",p:"/vælv/",cn:"阀"}
+    ]
+  },
+  {
+    text:"End Straight Union Fitting",
+    phonetic:"/ɛnd streɪt ˈjuːnjən ˈfɪtɪŋ/",
+    cn:"端直通组合接头",
+    desc:"用于末端直通连接的组合式接头",
+    words:[
+      {w:"End",p:"/ɛnd/",cn:"端"},
+      {w:"Straight",p:"/streɪt/",cn:"直通"},
+      {w:"Union",p:"/ˈjuːnjən/",cn:"接头"},
+      {w:"Fitting",p:"/ˈfɪtɪŋ/",cn:"连接件"}
+    ]
+  },
+  {
+    text:"Plug",
+    phonetic:"/plʌɡ/",
+    cn:"螺塞",
+    desc:"用于封闭管路或接口的密封件"
+  },
+  {
+    text:"Bolt",
+    phonetic:"/boʊlt/",
+    cn:"螺栓",
+    desc:"与螺母配合使用的紧固件"
+  },
+  {
+    text:"Level Gauge",
+    phonetic:"/ˈlɛvəl ɡeɪdʒ/",
+    cn:"液位计",
+    desc:"用于显示或检测液体液位高度的装置",
+    words:[
+      {w:"Level",p:"/ˈlɛvəl/",cn:"液位"},
+      {w:"Gauge",p:"/ɡeɪdʒ/",cn:"计"}
+    ]
+  }
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.p}</span>
+          <span class="small">${w.cn}</span>
+        </span>
+      `).join("");
+    }
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
