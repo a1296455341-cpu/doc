@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hydraulic System Assemblies</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+{
+text:"Hydraulic Reservoir Assembly",
+phonetic:"/haɪˈdrɔːlɪk ˈrɛzərvwɑːr əˈsɛmbli/",
+cn:"液压油箱装配总成",
+desc:"用于储存液压油并为系统提供油源的总成",
+words:[
+{w:"Hydraulic", cn:"液压的", phonetic:"/haɪˈdrɔːlɪk/"},
+{w:"Reservoir", cn:"储液箱/油箱", phonetic:"/ˈrɛzərvwɑːr/"},
+{w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+]},
+
+{
+text:"Hose Assembly",
+phonetic:"/hoʊz əˈsɛmbli/",
+cn:"胶管总成",
+desc:"由软管及接头组成的管路组件",
+words:[
+{w:"Hose", cn:"软管", phonetic:"/hoʊz/"},
+{w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+]},
+
+{
+text:"Radiator Assembly",
+phonetic:"/ˈreɪdieɪtər əˈsɛmbli/",
+cn:"散热器总成",
+desc:"用于散热降温的系统组件",
+words:[
+{w:"Radiator", cn:"散热器", phonetic:"/ˈreɪdieɪtər/"},
+{w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+]},
+
+{
+text:"Turntable Main Valve Assembly",
+phonetic:"/ˈtɜːrnˌteɪbl meɪn vælv əˈsɛmbli/",
+cn:"转台主阀组件",
+desc:"控制转台动作的主要液压阀组",
+words:[
+{w:"Turntable", cn:"转台", phonetic:"/ˈtɜːrnˌteɪbl/"},
+{w:"Main", cn:"主", phonetic:"/meɪn/"},
+{w:"Valve", cn:"阀", phonetic:"/vælv/"},
+{w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+]},
+
+{
+text:"Turntable Pump Assembly",
+phonetic:"/ˈtɜːrnˌteɪbl pʌmp əˈsɛmbli/",
+cn:"转台泵组",
+desc:"为转台提供液压动力的泵组件",
+words:[
+{w:"Turntable", cn:"转台", phonetic:"/ˈtɜːrnˌteɪbl/"},
+{w:"Pump", cn:"泵", phonetic:"/pʌmp/"},
+{w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+]},
+
+{
+text:"Hose Clamp",
+phonetic:"/hoʊz klæmp/",
+cn:"管夹",
+desc:"用于固定软管的位置",
+words:[
+{w:"Hose", cn:"软管", phonetic:"/hoʊz/"},
+{w:"Clamp", cn:"夹具", phonetic:"/klæmp/"}
+]},
+
+{
+text:"Filter Assembly",
+phonetic:"/ˈfɪltər əˈsɛmbli/",
+cn:"过滤器组件",
+desc:"用于过滤液压油杂质的装置",
+words:[
+{w:"Filter", cn:"过滤器", phonetic:"/ˈfɪltər/"},
+{w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+]},
+
+{
+text:"Three-way Union Fitting",
+phonetic:"/θriː weɪ ˈjuːniən ˈfɪtɪŋ/",
+cn:"三通组合接头",
+desc:"具有三个接口的管路连接件",
+words:[
+{w:"Three-way", cn:"三通", phonetic:"/θriː weɪ/"},
+{w:"Union", cn:"组合", phonetic:"/ˈjuːniən/"},
+{w:"Fitting", cn:"接头", phonetic:"/ˈfɪtɪŋ/"}
+]},
+
+{
+text:"Swing Motor Assembly",
+phonetic:"/swɪŋ ˈmoʊtər əˈsɛmbli/",
+cn:"回转马达组件",
+desc:"用于实现转台旋转的液压马达组件",
+words:[
+{w:"Swing", cn:"回转", phonetic:"/swɪŋ/"},
+{w:"Motor", cn:"马达", phonetic:"/ˈmoʊtər/"},
+{w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+]},
+
+{
+text:"Separate-mounted Emergency Pump",
+phonetic:"/ˈsɛpərət ˈmaʊntɪd ɪˈmɜːrʤənsi pʌmp/",
+cn:"应急泵分装",
+desc:"独立安装的应急液压泵",
+words:[
+{w:"Separate-mounted", cn:"分体安装的", phonetic:"/ˈsɛpərət ˈmaʊntɪd/"},
+{w:"Emergency", cn:"应急", phonetic:"/ɪˈmɜːrʤənsi/"},
+{w:"Pump", cn:"泵", phonetic:"/pʌmp/"}
+]},
+
+{
+text:"Steel Pipe Assembly",
+phonetic:"/stiːl paɪp əˈsɛmbli/",
+cn:"钢管总成",
+desc:"由钢制管路组成的液压连接组件",
+words:[
+{w:"Steel", cn:"钢", phonetic:"/stiːl/"},
+{w:"Pipe", cn:"管", phonetic:"/paɪp/"},
+{w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/"}
+]},
+
+{
+text:"T-nut",
+phonetic:"/tiː nʌt/",
+cn:"T型螺母",
+desc:"用于T型槽中的专用螺母"
+}
+
+];
+
+function speak(text){
+const u = new SpeechSynthesisUtterance(text);
+u.lang = 'en-US';
+speechSynthesis.speak(u);
+}
+
+function renderParts(){
+const container = document.querySelector('.container');
+parts.forEach(p=>{
+const item = document.createElement('div');
+item.className = 'item';
+
+let wordsHtml = "";
+if(p.words){
+wordsHtml = p.words.map(w=>`
+<span class="word btn" onclick="speak('${w.w}')">
+🔊 ${w.w}
+<span class="phonetic">${w.phonetic}</span>
+<span class="small">${w.cn}</span>
+</span>`).join("");
+}
+
+item.innerHTML = `
+<div class="title btn" onclick="speak('${p.text}')">
+🔊 ${p.text}
+<span class="phonetic">${p.phonetic}</span>
+<span class="small">${p.cn}</span>
+</div>
+<div class="desc">${p.desc}</div>
+${wordsHtml}
+`;
+
+container.appendChild(item);
+});
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
