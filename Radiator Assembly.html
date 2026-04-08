@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hydraulic Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:800px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  {
+    text:"End Straight Fitting",
+    phonetic:"/ɛnd streɪt ˈfɪtɪŋ/",
+    cn:"端直通接头",
+    desc:"用于管路末端的直通连接",
+    words:[
+      {w:"End",p:"/ɛnd/",cn:"端"},
+      {w:"Straight",p:"/streɪt/",cn:"直通"},
+      {w:"Fitting",p:"/ˈfɪtɪŋ/",cn:"接头"}
+    ]
+  },
+  {
+    text:"Washer",
+    phonetic:"/ˈwɑːʃər/",
+    cn:"垫圈",
+    desc:"用于分散压力、防止紧固件松动"
+  },
+  {
+    text:"Bolt",
+    phonetic:"/boʊlt/",
+    cn:"螺栓",
+    desc:"与螺母配合使用的紧固件"
+  },
+  {
+    text:"Air-cooled Radiator",
+    phonetic:"/ɛr koʊld ˈreɪdiˌeɪtər/",
+    cn:"风冷散热器",
+    desc:"通过空气流动带走设备热量的散热器",
+    words:[
+      {w:"Air-cooled",p:"/ɛr koʊld/",cn:"风冷"},
+      {w:"Radiator",p:"/ˈreɪdiˌeɪtər/",cn:"散热器"}
+    ]
+  },
+  {
+    text:"Three-way Union Fitting",
+    phonetic:"/ˈθriː weɪ ˈjuːnjən ˈfɪtɪŋ/",
+    cn:"三通组合接头",
+    desc:"用于三方向管路连接的组合接头",
+    words:[
+      {w:"Three-way",p:"/ˈθriː weɪ/",cn:"三通"},
+      {w:"Union",p:"/ˈjuːnjən/",cn:"接头"},
+      {w:"Fitting",p:"/ˈfɪtɪŋ/",cn:"连接件"}
+    ]
+  },
+  {
+    text:"90° Union Fitting",
+    phonetic:"/ˈnaɪnti dɪˈɡriː ˈjuːnjən ˈfɪtɪŋ/",
+    cn:"直角组合接头",
+    desc:"用于90度转向连接的管路接头",
+    words:[
+      {w:"90°",p:"/ˈnaɪnti dɪˈɡriː/",cn:"90度"},
+      {w:"Union",p:"/ˈjuːnjən/",cn:"接头"},
+      {w:"Fitting",p:"/ˈfɪtɪŋ/",cn:"连接件"}
+    ]
+  },
+  {
+    text:"Straight Reducer Fitting",
+    phonetic:"/streɪt rɪˈdjuːsər ˈfɪtɪŋ/",
+    cn:"对接式变径接头",
+    desc:"用于不同直径管路的直线连接",
+    words:[
+      {w:"Straight",p:"/streɪt/",cn:"直线"},
+      {w:"Reducer",p:"/rɪˈdjuːsər/",cn:"变径"},
+      {w:"Fitting",p:"/ˈfɪtɪŋ/",cn:"接头"}
+    ]
+  }
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.p}</span>
+          <span class="small">${w.cn}</span>
+        </span>
+      `).join("");
+    }
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
