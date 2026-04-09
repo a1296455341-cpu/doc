@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  { text:"Third Boom Weldment", cn:"三节臂焊接体", desc:"机械臂的焊接组件", words:[
+      { w:"Third", cn:"第三节", phonetic:"/θɜːrd/" },
+      { w:"Boom", cn:"臂", phonetic:"/buːm/" },
+      { w:"Weldment", cn:"焊接体", phonetic:"/ˈwɛldmənt/" }
+  ]},
+  { text:"Wear Pad", cn:"滑块", desc:"机械滑块组件", words:[
+      { w:"Wear", cn:"滑动", phonetic:"/wɛər/" },
+      { w:"Pad", cn:"垫块", phonetic:"/pæd/" }
+  ]},
+  { text:"Shim", phonetic:"/ʃɪm/", cn:"垫片", desc:"用于调整间隙或对齐" },
+  { text:"Plate", phonetic:"/pleɪt/", cn:"板", desc:"平板零件" },
+  { text:"Bolt", phonetic:"/boʊlt/", cn:"螺栓", desc:"用于连接零件的紧固件" },
+  { text:"Wear Pad Assembly", cn:"滑块组件", desc:"用于机械部件的滑块总成", words:[
+      { w:"Wear", cn:"滑动", phonetic:"/wɛər/" },
+      { w:"Pad", cn:"垫块", phonetic:"/pæd/" },
+      { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Washer", phonetic:"/ˈwɑːʃər/", cn:"垫圈", desc:"用于螺栓、螺母间分散压力" },
+  { text:"Block", phonetic:"/blɑːk/", cn:"挡块", desc:"用于限制部件移动" },
+  { text:"Pin", phonetic:"/pɪn/", cn:"销", desc:"用于固定零件或做铰接" }
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>`).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        ${p.phonetic ? `<span class="phonetic">${p.phonetic}</span>` : ""}
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
