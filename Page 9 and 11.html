@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assembly Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  { text:"Platform Assembly", phonetic:"/ˈplætˌfɔːrm əˈsɛmbli/", cn:"平台总成", desc:"整个平台组件", words:[
+    { w:"Platform", cn:"平台", phonetic:"/ˈplætˌfɔːrm/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Platform Support Assembly", phonetic:"/ˈplætˌfɔːrm səˈpɔːrt əˈsɛmbli/", cn:"托架总成", desc:"平台支撑组件", words:[
+    { w:"Platform", cn:"平台", phonetic:"/ˈplætˌfɔːrm/" },
+    { w:"Support", cn:"支撑", phonetic:"/səˈpɔːrt/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Jib Assembly", phonetic:"/dʒɪb əˈsɛmbli/", cn:"飞臂总成", desc:"伸缩臂组件", words:[
+    { w:"Jib", cn:"飞臂", phonetic:"/dʒɪb/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Telescopic Boom Assembly", phonetic:"/ˌtɛlɪˈskɑːpɪk buːm əˈsɛmbli/", cn:"臂架总成", desc:"伸缩臂架组件", words:[
+    { w:"Telescopic", cn:"伸缩的", phonetic:"/ˌtɛlɪˈskɑːpɪk/" },
+    { w:"Boom", cn:"臂架", phonetic:"/buːm/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Cover Assembly", phonetic:"/ˈkʌvər əˈsɛmbli/", cn:"覆盖件总成", desc:"保护覆盖件组件", words:[
+    { w:"Cover", cn:"覆盖件", phonetic:"/ˈkʌvər/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Telescoping Rope Mechanism", phonetic:"/ˌtɛlɪˈskoʊpɪŋ roʊp ˈmɛkənɪzəm/", cn:"伸缩绳系统", desc:"用于伸缩绳索的机构", words:[
+    { w:"Telescoping", cn:"伸缩", phonetic:"/ˌtɛlɪˈskoʊpɪŋ/" },
+    { w:"Rope", cn:"绳索", phonetic:"/roʊp/" },
+    { w:"Mechanism", cn:"机构", phonetic:"/ˈmɛkənɪzəm/" }
+  ]},
+  { text:"Drag-Chain System", phonetic:"/dræɡ tʃeɪn ˈsɪstəm/", cn:"拖链系统", desc:"用于布线或管路拖链", words:[
+    { w:"Drag-Chain", cn:"拖链", phonetic:"/dræɡ tʃeɪn/" },
+    { w:"System", cn:"系统", phonetic:"/ˈsɪstəm/" }
+  ]},
+  { text:"Diesel Power Assembly", phonetic:"/ˈdiːzəl ˈpaʊər əˈsɛmbli/", cn:"柴油动力总成", desc:"柴油发动机及动力组件", words:[
+    { w:"Diesel", cn:"柴油", phonetic:"/ˈdiːzəl/" },
+    { w:"Power", cn:"动力", phonetic:"/ˈpaʊər/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Revolving Table Assembly", phonetic:"/rɪˈvɑːlvɪŋ ˈteɪbl əˈsɛmbli/", cn:"转台装配", desc:"用于设备回转的转台组件", words:[
+    { w:"Revolving", cn:"回转的", phonetic:"/rɪˈvɑːlvɪŋ/" },
+    { w:"Table", cn:"台面", phonetic:"/ˈteɪbl/" },
+    { w:"Assembly", cn:"装配/总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Slewing Mechanism", phonetic:"/ˈsluːɪŋ ˈmɛkənɪzəm/", cn:"回转机构总成", desc:"用于旋转机构的组件", words:[
+    { w:"Slewing", cn:"回转", phonetic:"/ˈsluːɪŋ/" },
+    { w:"Mechanism", cn:"机构", phonetic:"/ˈmɛkənɪzəm/" }
+  ]},
+  { text:"Counterweight Assembly", phonetic:"/ˈkaʊntərweɪt əˈsɛmbli/", cn:"配重总成", desc:"用于平衡设备重量", words:[
+    { w:"Counterweight", cn:"配重", phonetic:"/ˈkaʊntərweɪt/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Carriage Assembly", phonetic:"/ˈkærɪdʒ əˈsɛmbli/", cn:"下车总成", desc:"设备下车组件", words:[
+    { w:"Carriage", cn:"下车/承载部件", phonetic:"/ˈkærɪdʒ/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Electrical System Assembly", phonetic:"/ɪˈlɛktrɪkəl ˈsɪstəm əˈsɛmbli/", cn:"电气系统总成", desc:"整机电气系统组件", words:[
+    { w:"Electrical", cn:"电气", phonetic:"/ɪˈlɛktrɪkəl/" },
+    { w:"System", cn:"系统", phonetic:"/ˈsɪstəm/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Hydraulic System Assembly", phonetic:"/haɪˈdrɔːlɪk ˈsɪstəm əˈsɛmbli/", cn:"液压系统总成", desc:"整机液压系统组件", words:[
+    { w:"Hydraulic", cn:"液压", phonetic:"/haɪˈdrɔːlɪk/" },
+    { w:"System", cn:"系统", phonetic:"/ˈsɪstəm/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>
+      `).join("");
+    }
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
