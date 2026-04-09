@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Control Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  { text:"Control Box", phonetic:"/kənˈtroʊl bɑːks/", cn:"控制柜", desc:"用于管理和操作设备", words:[
+    { w:"Control", cn:"控制", phonetic:"/kənˈtroʊl/" },
+    { w:"Box", cn:"柜/箱", phonetic:"/bɑːks/" }
+  ]},
+  { text:"Emergency Stop Button", phonetic:"/ɪˈmɜːrdʒənsi stɑːp ˈbʌtn/", cn:"急停按钮", desc:"用于紧急停止设备", words:[
+    { w:"Emergency", cn:"紧急", phonetic:"/ɪˈmɜːrdʒənsi/" },
+    { w:"Stop", cn:"停止", phonetic:"/stɑːp/" },
+    { w:"Button", cn:"按钮", phonetic:"/ˈbʌtn/" }
+  ]},
+  { text:"Buzzer", phonetic:"/ˈbʌzər/", cn:"蜂鸣器", desc:"发出声音提示的装置" },
+  { text:"Key Switch", phonetic:"/ki swɪtʃ/", cn:"点火开关", desc:"用于启动或控制设备", words:[
+    { w:"Key", cn:"钥匙/开关", phonetic:"/ki/" },
+    { w:"Switch", cn:"开关", phonetic:"/swɪtʃ/" }
+  ]},
+  { text:"Toggle Switch", phonetic:"/ˈtɑːɡl swɪtʃ/", cn:"钮子开关", desc:"用于切换开关状态", words:[
+    { w:"Toggle", cn:"切换/钮子", phonetic:"/ˈtɑːɡl/" },
+    { w:"Switch", cn:"开关", phonetic:"/swɪtʃ/" }
+  ]},
+  { text:"Waterproof Cap", phonetic:"/ˈwɔːtərpruːf kæp/", cn:"防水帽", desc:"用于保护接口防水", words:[
+    { w:"Waterproof", cn:"防水", phonetic:"/ˈwɔːtərpruːf/" },
+    { w:"Cap", cn:"帽/盖", phonetic:"/kæp/" }
+  ]},
+  { text:"Turntable Control Box Harness", phonetic:"/ˈtɜːrnˌteɪbl kənˈtroʊl bɑːks ˈhɑːrnɪs/", cn:"转台控制箱线束", desc:"用于转台控制箱信号传输", words:[
+    { w:"Turntable", cn:"转台", phonetic:"/ˈtɜːrnˌteɪbl/" },
+    { w:"Control", cn:"控制", phonetic:"/kənˈtroʊl/" },
+    { w:"Box", cn:"箱", phonetic:"/bɑːks/" },
+    { w:"Harness", cn:"线束", phonetic:"/ˈhɑːrnɪs/" }
+  ]},
+  { text:"Battery Relay", phonetic:"/ˈbætəri ˈrileɪ/", cn:"蓄电池继电器", desc:"用于蓄电池控制电路", words:[
+    { w:"Battery", cn:"蓄电池", phonetic:"/ˈbætəri/" },
+    { w:"Relay", cn:"继电器", phonetic:"/ˈrileɪ/" }
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>
+      `).join("");
+    }
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
