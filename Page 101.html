@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  { text:"Bolt", phonetic:"/boʊlt/", cn:"螺栓", desc:"用于连接零件的紧固件" },
+  { text:"Fan", phonetic:"/fæn/", cn:"风扇", desc:"用于散热或通风" },
+  { text:"Diesel Engine", cn:"发动机", desc:"动力装置，使用柴油燃料", words:[
+      { w:"Diesel", cn:"柴油", phonetic:"/ˈdiːzəl/" },
+      { w:"Engine", cn:"发动机", phonetic:"/ˈɛnʤɪn/" }
+  ]},
+  { text:"Limit Plate", cn:"限位板", desc:"用于限制部件移动范围", words:[
+      { w:"Limit", cn:"限位", phonetic:"/ˈlɪmɪt/" },
+      { w:"Plate", cn:"板", phonetic:"/pleɪt/" }
+  ]},
+  { text:"Front Left Outrigger Weldment", cn:"左前支脚焊件", desc:"左前支脚的焊接组件", words:[
+      { w:"Front", cn:"前", phonetic:"/frʌnt/" },
+      { w:"Left", cn:"左", phonetic:"/lɛft/" },
+      { w:"Outrigger", cn:"支脚", phonetic:"/ˈaʊtrɪɡər/" },
+      { w:"Weldment", cn:"焊件", phonetic:"/ˈwɛldmənt/" }
+  ]},
+  { text:"Rear Left Outrigger Weldment", cn:"左后支脚焊件", desc:"左后支脚的焊接组件", words:[
+      { w:"Rear", cn:"后", phonetic:"/rɪər/" },
+      { w:"Left", cn:"左", phonetic:"/lɛft/" },
+      { w:"Outrigger", cn:"支脚", phonetic:"/ˈaʊtrɪɡər/" },
+      { w:"Weldment", cn:"焊件", phonetic:"/ˈwɛldmənt/" }
+  ]},
+  { text:"Washer", phonetic:"/ˈwɑːʃər/", cn:"垫圈", desc:"用于螺栓、螺母间分散压力" },
+  { text:"Flange", phonetic:"/flændʒ/", cn:"法兰盘", desc:"用于管道或轴的连接" },
+  { text:"Flange Coupling", cn:"法兰联轴器", desc:"连接两轴的法兰型联轴器", words:[
+      { w:"Flange", cn:"法兰", phonetic:"/flændʒ/" },
+      { w:"Coupling", cn:"联轴器", phonetic:"/ˈkʌplɪŋ/" }
+  ]},
+  { text:"Steel Structure High-strength Washer", cn:"钢结构用高强度垫圈", desc:"用于钢结构的高强度垫圈", words:[
+      { w:"Steel", cn:"钢", phonetic:"/stiːl/" },
+      { w:"Structure", cn:"结构", phonetic:"/ˈstrʌkʧər/" },
+      { w:"High-strength", cn:"高强度", phonetic:"/haɪ-strɛŋθ/" },
+      { w:"Washer", cn:"垫圈", phonetic:"/ˈwɑːʃər/" }
+  ]},
+  { text:"Front Right Outrigger Weldment", cn:"右前支脚焊件", desc:"右前支脚的焊接组件", words:[
+      { w:"Front", cn:"前", phonetic:"/frʌnt/" },
+      { w:"Right", cn:"右", phonetic:"/raɪt/" },
+      { w:"Outrigger", cn:"支脚", phonetic:"/ˈaʊtrɪɡər/" },
+      { w:"Weldment", cn:"焊件", phonetic:"/ˈwɛldmənt/" }
+  ]},
+  { text:"Oil Drain Valve", cn:"放油阀", desc:"用于排放油液", words:[
+      { w:"Oil", cn:"油", phonetic:"/ɔɪl/" },
+      { w:"Drain", cn:"排放", phonetic:"/dreɪn/" },
+      { w:"Valve", cn:"阀", phonetic:"/vælv/" }
+  ]},
+  { text:"Rear Right Outrigger Weldment", cn:"右后支脚焊件", desc:"右后支脚的焊接组件", words:[
+      { w:"Rear", cn:"后", phonetic:"/rɪər/" },
+      { w:"Right", cn:"右", phonetic:"/raɪt/" },
+      { w:"Outrigger", cn:"支脚", phonetic:"/ˈaʊtrɪɡər/" },
+      { w:"Weldment", cn:"焊件", phonetic:"/ˈwɛldmənt/" }
+  ]},
+  { text:"Shock Absorber", cn:"减震器", desc:"用于吸收冲击和振动", words:[
+      { w:"Shock", cn:"减震", phonetic:"/ʃɑːk/" },
+      { w:"Absorber", cn:"器", phonetic:"/əbˈzɔːrbər/" }
+  ]},
+  { text:"Shock Absorber Plate", cn:"减震器垫板", desc:"减震器底部支撑板", words:[
+      { w:"Shock", cn:"减震", phonetic:"/ʃɑːk/" },
+      { w:"Absorber", cn:"器", phonetic:"/əbˈzɔːrbər/" },
+      { w:"Plate", cn:"垫板", phonetic:"/pleɪt/" }
+  ]},
+  { text:"Nut", phonetic:"/nʌt/", cn:"螺母", desc:"与螺栓配合使用的紧固件" }
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>`).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        ${p.phonetic ? `<span class="phonetic">${p.phonetic}</span>` : ""}
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
