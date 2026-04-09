@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+  { text:"Sealing Foam", phonetic:"/ˈsiːlɪŋ foʊm/", cn:"密封海绵", desc:"用于填充和密封间隙", words:[
+    { w:"Sealing", cn:"密封", phonetic:"/ˈsiːlɪŋ/" },
+    { w:"Foam", cn:"海绵", phonetic:"/foʊm/" }
+  ]},
+
+  { text:"Protective Sleeve", phonetic:"/prəˈtɛktɪv sliːv/", cn:"护套", desc:"用于保护管线或线束", words:[
+    { w:"Protective", cn:"保护", phonetic:"/prəˈtɛktɪv/" },
+    { w:"Sleeve", cn:"套管", phonetic:"/sliːv/" }
+  ]},
+
+  { text:"Radiator Mounting Bracket", phonetic:"/ˈreɪdiˌeɪtər ˈmaʊntɪŋ ˈbrækɪt/", cn:"散热器安装架", desc:"用于固定散热器", words:[
+    { w:"Radiator", cn:"散热器", phonetic:"/ˈreɪdiˌeɪtər/" },
+    { w:"Mounting", cn:"安装", phonetic:"/ˈmaʊntɪŋ/" },
+    { w:"Bracket", cn:"支架", phonetic:"/ˈbrækɪt/" }
+  ]},
+
+  { text:"Bolt", phonetic:"/boʊlt/", cn:"螺栓", desc:"用于连接零件的紧固件" },
+
+  { text:"Mounting Plate", phonetic:"/ˈmaʊntɪŋ pleɪt/", cn:"安装板", desc:"用于固定或支撑组件", words:[
+    { w:"Mounting", cn:"安装", phonetic:"/ˈmaʊntɪŋ/" },
+    { w:"Plate", cn:"板", phonetic:"/pleɪt/" }
+  ]},
+
+  { text:"Steel Band Hose Clamp", phonetic:"/stiːl bænd hoʊs klæmp/", cn:"钢带式弹性卡箍", desc:"用于固定软管", words:[
+    { w:"Steel", cn:"钢", phonetic:"/stiːl/" },
+    { w:"Band", cn:"带", phonetic:"/bænd/" },
+    { w:"Hose", cn:"软管", phonetic:"/hoʊs/" },
+    { w:"Clamp", cn:"卡箍", phonetic:"/klæmp/" }
+  ]},
+
+  { text:"Water Hose", phonetic:"/ˈwɔːtər hoʊs/", cn:"水管", desc:"用于输送水", words:[
+    { w:"Water", cn:"水", phonetic:"/ˈwɔːtər/" },
+    { w:"Hose", cn:"管", phonetic:"/hoʊs/" }
+  ]},
+
+  { text:"Reservoir", phonetic:"/ˈrɛzərvwɑːr/", cn:"储液箱", desc:"储存液体" },
+
+  { text:"Radiator Support Rod", phonetic:"/ˈreɪdiˌeɪtər səˈpɔːrt rɑːd/", cn:"水箱撑杆", desc:"支撑散热器", words:[
+    { w:"Radiator", cn:"散热器", phonetic:"/ˈreɪdiˌeɪtər/" },
+    { w:"Support", cn:"支撑", phonetic:"/səˈpɔːrt/" },
+    { w:"Rod", cn:"杆", phonetic:"/rɑːd/" }
+  ]},
+
+  { text:"Nut", phonetic:"/nʌt/", cn:"螺母", desc:"用于配合螺栓固定零件" },
+
+  { text:"Bent Plate", phonetic:"/bɛnt pleɪt/", cn:"弯板", desc:"用于支撑或连接，具有弯曲形状", words:[
+    { w:"Bent", cn:"弯曲", phonetic:"/bɛnt/" },
+    { w:"Plate", cn:"板", phonetic:"/pleɪt/" }
+  ]},
+
+  { text:"Washer", phonetic:"/ˈwɑːʃər/", cn:"垫圈", desc:"用于分散压力、防松" },
+
+  { text:"Worm Drive Hose Clamp with Spring Band", phonetic:"/wɜːrm draɪv hoʊs klæmp wɪð sprɪŋ bænd/", cn:"螺旋弹簧蜗杆卡箍", desc:"用于固定软管，带弹簧增紧", words:[
+    { w:"Worm", cn:"蜗杆", phonetic:"/wɜːrm/" },
+    { w:"Drive", cn:"驱动", phonetic:"/draɪv/" },
+    { w:"Hose", cn:"软管", phonetic:"/hoʊs/" },
+    { w:"Clamp", cn:"卡箍", phonetic:"/klæmp/" },
+    { w:"with", cn:"带", phonetic:"/wɪð/" },
+    { w:"Spring", cn:"弹簧", phonetic:"/sprɪŋ/" },
+    { w:"Band", cn:"带", phonetic:"/bænd/" }
+  ]},
+
+  { text:"Rubber Pad", phonetic:"/ˈrʌbər pæd/", cn:"橡胶垫", desc:"用于减震或防滑", words:[
+    { w:"Rubber", cn:"橡胶", phonetic:"/ˈrʌbər/" },
+    { w:"Pad", cn:"垫", phonetic:"/pæd/" }
+  ]},
+
+  { text:"Upper Radiator Hose", phonetic:"/ˈʌpər ˈreɪdiˌeɪtər hoʊs/", cn:"水箱上水管", desc:"连接水箱上端", words:[
+    { w:"Upper", cn:"上部", phonetic:"/ˈʌpər/" },
+    { w:"Radiator", cn:"水箱", phonetic:"/ˈreɪdiˌeɪtər/" },
+    { w:"Hose", cn:"管", phonetic:"/hoʊs/" }
+  ]},
+
+  { text:"Radiator", phonetic:"/ˈreɪdiˌeɪtər/", cn:"散热器", desc:"用于冷却发动机液体" },
+
+  { text:"Drain Hose", phonetic:"/dreɪn hoʊs/", cn:"放水管", desc:"用于排放液体", words:[
+    { w:"Drain", cn:"排水", phonetic:"/dreɪn/" },
+    { w:"Hose", cn:"管", phonetic:"/hoʊs/" }
+  ]},
+
+  { text:"Lower Radiator Hose", phonetic:"/ˈloʊər ˈreɪdiˌeɪtər hoʊs/", cn:"水箱下水管", desc:"连接水箱下端", words:[
+    { w:"Lower", cn:"下部", phonetic:"/ˈloʊər/" },
+    { w:"Radiator", cn:"水箱", phonetic:"/ˈreɪdiˌeɪtər/" },
+    { w:"Hose", cn:"管", phonetic:"/hoʊs/" }
+  ]},
+
+  { text:"Harness Clamp", phonetic:"/ˈhɑːrnɪs klæmp/", cn:"线夹", desc:"用于固定线束", words:[
+    { w:"Harness", cn:"线束", phonetic:"/ˈhɑːrnɪs/" },
+    { w:"Clamp", cn:"夹具", phonetic:"/klæmp/" }
+  ]}
+
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>
+      `).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
