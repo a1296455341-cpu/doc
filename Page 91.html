@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  { text:"Reducer Diesel Hose", cn:"变径柴油管", desc:"用于连接不同口径的柴油管", words:[
+      { w:"Reducer", cn:"变径管", phonetic:"/rɪˈdjuːsər/" },
+      { w:"Diesel", cn:"柴油", phonetic:"/ˈdiːzəl/" },
+      { w:"Hose", cn:"管", phonetic:"/hoʊz/" }
+  ]},
+  { text:"Diesel Hose", cn:"柴油管", desc:"传输柴油的软管", words:[
+      { w:"Diesel", cn:"柴油", phonetic:"/ˈdiːzəl/" },
+      { w:"Hose", cn:"管", phonetic:"/hoʊz/" }
+  ]},
+  { text:"Steel Band Hose Clamp", cn:"钢带式弹性卡箍", desc:"用于固定软管的卡箍", words:[
+      { w:"Steel", cn:"钢", phonetic:"/stiːl/" },
+      { w:"Band", cn:"带", phonetic:"/bænd/" },
+      { w:"Hose", cn:"管", phonetic:"/hoʊz/" },
+      { w:"Clamp", cn:"卡箍", phonetic:"/klæmp/" }
+  ]},
+  { text:"Coarse Filter Suction Tube", cn:"粗滤吸油管", desc:"用于从粗滤器吸油", words:[
+      { w:"Coarse", cn:"粗滤", phonetic:"/kɔːrs/" },
+      { w:"Filter", cn:"过滤器", phonetic:"/ˈfɪltər/" },
+      { w:"Suction", cn:"吸", phonetic:"/ˈsʌkʃən/" },
+      { w:"Tube", cn:"管", phonetic:"/tuːb/" }
+  ]},
+  { text:"Fuel Tank Assembly", cn:"燃油箱总成", desc:"燃油箱及其组件", words:[
+      { w:"Fuel", cn:"燃油", phonetic:"/fjuːl/" },
+      { w:"Tank", cn:"油箱", phonetic:"/tæŋk/" },
+      { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+  { text:"Bolt", phonetic:"/boʊlt/", cn:"螺栓", desc:"用于连接零件的紧固件" },
+  { text:"Washer", phonetic:"/ˈwɑːʃər/", cn:"垫圈", desc:"用于螺栓、螺母间分散压力" },
+  { text:"Nut", phonetic:"/nʌt/", cn:"螺母", desc:"与螺栓配合使用的紧固件" },
+  { text:"Hose Clamp", cn:"喉箍", desc:"用于固定软管的卡箍", words:[
+      { w:"Hose", cn:"管", phonetic:"/hoʊz/" },
+      { w:"Clamp", cn:"卡箍", phonetic:"/klæmp/" }
+  ]},
+  { text:"Water Pipe", cn:"水管", desc:"用于输送水的管道", words:[
+      { w:"Water", cn:"水", phonetic:"/ˈwɔːtər/" },
+      { w:"Pipe", cn:"管", phonetic:"/paɪp/" }
+  ]},
+  { text:"Bent Plate", cn:"弯板", desc:"弯曲的板件", words:[
+      { w:"Bent", cn:"弯", phonetic:"/bɛnt/" },
+      { w:"Plate", cn:"板", phonetic:"/pleɪt/" }
+  ]},
+  { text:"Screw", phonetic:"/skruː/", cn:"螺钉", desc:"用于连接零件，可旋入螺纹孔" },
+  { text:"Pivot Bolt", cn:"铰接螺栓", desc:"用于铰接连接的螺栓", words:[
+      { w:"Pivot", cn:"枢轴", phonetic:"/ˈpɪvət/" },
+      { w:"Bolt", cn:"螺栓", phonetic:"/boʊlt/" }
+  ]},
+  { text:"Harness Clamp", cn:"线夹", desc:"用于固定电缆或管线", words:[
+      { w:"Harness", cn:"线束", phonetic:"/ˈhɑːrnɪs/" },
+      { w:"Clamp", cn:"夹", phonetic:"/klæmp/" }
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>`).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        ${p.phonetic ? `<span class="phonetic">${p.phonetic}</span>` : ""}
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
