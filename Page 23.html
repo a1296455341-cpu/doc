@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  { text:"Bolt", phonetic:"/boʊlt/", cn:"螺栓", desc:"用于连接零件的紧固件" },
+  { text:"Spring Washer", phonetic:"/sprɪŋ ˈwɑːʃər/", cn:"弹簧垫圈", desc:"用于增加螺栓预紧力", words:[
+    { w:"Spring", cn:"弹簧", phonetic:"/sprɪŋ/" },
+    { w:"Washer", cn:"垫圈", phonetic:"/ˈwɑːʃər/" }
+  ]},
+  { text:"Washer", phonetic:"/ˈwɑːʃər/", cn:"垫圈", desc:"用于分散螺栓压力" },
+  { text:"Bracket", phonetic:"/ˈbrækɪt/", cn:"支架", desc:"用于支撑或固定部件" },
+  { text:"Self-locking Nut", phonetic:"/ˌsɛlf ˈlɑːkɪŋ nʌt/", cn:"自锁螺母", desc:"可防松动的螺母", words:[
+    { w:"Self-locking", cn:"自锁的", phonetic:"/ˌsɛlf ˈlɑːkɪŋ/" },
+    { w:"Nut", cn:"螺母", phonetic:"/nʌt/" }
+  ]},
+  { text:"Nut", phonetic:"/nʌt/", cn:"螺母", desc:"与螺栓配合使用的紧固件" },
+  { text:"Bumper Liner Plates", phonetic:"/ˈbʌmpər ˈlaɪnər pleɪts/", cn:"缓冲垫板", desc:"用于减缓冲击的板件", words:[
+    { w:"Bumper", cn:"缓冲", phonetic:"/ˈbʌmpər/" },
+    { w:"Liner", cn:"衬板", phonetic:"/ˈlaɪnər/" },
+    { w:"Plates", cn:"板", phonetic:"/pleɪts/" }
+  ]},
+  { text:"Screw", phonetic:"/skruː/", cn:"螺钉", desc:"用于连接零件" },
+  { text:"Connection Support", phonetic:"/kəˈnɛkʃən səˈpɔːrt/", cn:"连接架", desc:"用于支撑连接件", words:[
+    { w:"Connection", cn:"连接", phonetic:"/kəˈnɛkʃən/" },
+    { w:"Support", cn:"支撑", phonetic:"/səˈpɔːrt/" }
+  ]},
+  { text:"Self-Lubricating Bearing", phonetic:"/ˌsɛlf ˈluːbrɪˌkeɪtɪŋ ˈbɛrɪŋ/", cn:"自润滑轴承", desc:"无需额外润滑的轴承", words:[
+    { w:"Self-Lubricating", cn:"自润滑的", phonetic:"/ˌsɛlf ˈluːbrɪˌkeɪtɪŋ/" },
+    { w:"Bearing", cn:"轴承", phonetic:"/ˈbɛrɪŋ/" }
+  ]},
+  { text:"Thrust Washer", phonetic:"/θrʌst ˈwɑːʃər/", cn:"止推垫片", desc:"用于承受轴向力", words:[
+    { w:"Thrust", cn:"轴向力", phonetic:"/θrʌst/" },
+    { w:"Washer", cn:"垫片", phonetic:"/ˈwɑːʃər/" }
+  ]},
+  { text:"Keeper Pin", phonetic:"/ˈkiːpər pɪn/", cn:"销轴", desc:"用于固定零件位置", words:[
+    { w:"Keeper", cn:"固定", phonetic:"/ˈkiːpər/" },
+    { w:"Pin", cn:"销", phonetic:"/pɪn/" }
+  ]},
+  { text:"Rotating Shaft", phonetic:"/ˈroʊˌteɪtɪŋ ʃæft/", cn:"转轴", desc:"用于传递旋转运动", words:[
+    { w:"Rotating", cn:"旋转的", phonetic:"/ˈroʊˌteɪtɪŋ/" },
+    { w:"Shaft", cn:"轴", phonetic:"/ʃæft/" }
+  ]},
+  { text:"Platform Support Weldment", phonetic:"/ˈplætˌfɔːrm səˈpɔːrt ˈwɛldmənt/", cn:"托架焊接体", desc:"焊接组合的支撑托架", words:[
+    { w:"Platform", cn:"平台", phonetic:"/ˈplætˌfɔːrm/" },
+    { w:"Support", cn:"支撑", phonetic:"/səˈpɔːrt/" },
+    { w:"Weldment", cn:"焊接体", phonetic:"/ˈwɛldmənt/" }
+  ]},
+  { text:"Cushion Block", phonetic:"/ˈkʊʃən blɑːk/", cn:"垫块", desc:"用于缓冲或支撑", words:[
+    { w:"Cushion", cn:"垫", phonetic:"/ˈkʊʃən/" },
+    { w:"Block", cn:"块", phonetic:"/blɑːk/" }
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>
+      `).join("");
+    }
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
