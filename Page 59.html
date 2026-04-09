@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanical Parts</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+  { text:"Mounting Plate for Hinge", cn:"铰链安装板", desc:"用于固定铰链的安装板", words:[
+      { w:"Mounting", cn:"安装", phonetic:"/ˈmaʊntɪŋ/" },
+      { w:"Plate", cn:"板", phonetic:"/pleɪt/" },
+      { w:"for", cn:"用于", phonetic:"/fɔːr/" },
+      { w:"Hinge", cn:"铰链", phonetic:"/hɪndʒ/" }
+  ]},
+  { text:"Keeper Pin", cn:"销轴", desc:"用于固定零件的销轴", words:[
+      { w:"Keeper", cn:"保持器", phonetic:"/ˈkiːpər/" },
+      { w:"Pin", cn:"销", phonetic:"/pɪn/" }
+  ]},
+  { text:"Cotter Pin", cn:"销", desc:"用于固定螺栓或轴的开口销", words:[
+      { w:"Cotter", cn:"开口", phonetic:"/ˈkɑːtər/" },
+      { w:"Pin", cn:"销", phonetic:"/pɪn/" }
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>`).join("");
+    }
+
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        ${p.phonetic ? `<span class="phonetic">${p.phonetic}</span>` : ""}
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
