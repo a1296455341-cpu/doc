@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electrical Components</title>
+<style>
+body { font-family: Arial; background:#f5f6f7; padding:15px; }
+.container { max-width:950px; margin:auto; }
+.item { background:#fff; padding:12px; margin-bottom:12px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.title { font-weight:bold; }
+.desc { color:#666; font-size:14px; margin-top:4px; }
+.word { display:block; margin-left:10px; margin-top:4px; }
+.btn { cursor:pointer; color:#1a73e8; }
+.small { color:#888; font-size:13px; margin-left:6px; }
+.phonetic { color:#999; font-size:13px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container"></div>
+
+<script>
+const parts = [
+
+  { text:"Main Power Switch to Ground Cable", phonetic:"/meɪn ˈpaʊər swɪtʃ tuː ɡraʊnd ˈkeɪbəl/", cn:"总电源开关至搭铁点电源线", desc:"连接总电源开关和搭铁点的电源线", words:[
+    { w:"Main", cn:"总", phonetic:"/meɪn/" },
+    { w:"Power", cn:"电源", phonetic:"/ˈpaʊər/" },
+    { w:"Switch", cn:"开关", phonetic:"/swɪtʃ/" },
+    { w:"to", cn:"至", phonetic:"/tuː/" },
+    { w:"Ground", cn:"搭铁点", phonetic:"/ɡraʊnd/" },
+    { w:"Cable", cn:"电源线", phonetic:"/ˈkeɪbəl/" }
+  ]},
+
+  { text:"Battery Negative to Main Power Switch Cable", phonetic:"/ˈbætəri ˈnɛɡətɪv tuː meɪn ˈpaʊər swɪtʃ ˈkeɪbəl/", cn:"电源负极至总电源开关电源线", desc:"连接电源负极与总电源开关", words:[
+    { w:"Battery", cn:"电池", phonetic:"/ˈbætəri/" },
+    { w:"Negative", cn:"负极", phonetic:"/ˈnɛɡətɪv/" },
+    { w:"to", cn:"至", phonetic:"/tuː/" },
+    { w:"Main", cn:"总", phonetic:"/meɪn/" },
+    { w:"Power", cn:"电源", phonetic:"/ˈpaʊər/" },
+    { w:"Switch", cn:"开关", phonetic:"/swɪtʃ/" },
+    { w:"Cable", cn:"电源线", phonetic:"/ˈkeɪbəl/" }
+  ]},
+
+  { text:"Engine Power Cable", phonetic:"/ˈɛnʤɪn ˈpaʊər ˈkeɪbəl/", cn:"发动机启动电源线", desc:"为发动机启动提供电源", words:[
+    { w:"Engine", cn:"发动机", phonetic:"/ˈɛnʤɪn/" },
+    { w:"Power", cn:"电源", phonetic:"/ˈpaʊər/" },
+    { w:"Cable", cn:"电源线", phonetic:"/ˈkeɪbəl/" }
+  ]},
+
+  { text:"Engine Ground Cable", phonetic:"/ˈɛnʤɪn ɡraʊnd ˈkeɪbəl/", cn:"发动机搭铁电源线", desc:"发动机接地线", words:[
+    { w:"Engine", cn:"发动机", phonetic:"/ˈɛnʤɪn/" },
+    { w:"Ground", cn:"搭铁", phonetic:"/ɡraʊnd/" },
+    { w:"Cable", cn:"电源线", phonetic:"/ˈkeɪbəl/" }
+  ]},
+
+  { text:"Battery Positive to Emergency Pump Fuse Power Cable", phonetic:"/ˈbætəri ˈpɑːzətɪv tuː ɪˈmɜːrdʒənsi pʌmp fjuːz ˈpaʊər ˈkeɪbəl/", cn:"电源正极至应急泵保险电源线", desc:"连接电源正极和应急泵保险", words:[
+    { w:"Battery", cn:"电池", phonetic:"/ˈbætəri/" },
+    { w:"Positive", cn:"正极", phonetic:"/ˈpɑːzətɪv/" },
+    { w:"to", cn:"至", phonetic:"/tuː/" },
+    { w:"Emergency", cn:"应急", phonetic:"/ɪˈmɜːrdʒənsi/" },
+    { w:"Pump", cn:"泵", phonetic:"/pʌmp/" },
+    { w:"Fuse", cn:"保险", phonetic:"/fjuːz/" },
+    { w:"Power", cn:"电源", phonetic:"/ˈpaʊər/" },
+    { w:"Cable", cn:"线", phonetic:"/ˈkeɪbəl/" }
+  ]},
+
+  { text:"Emergency Pump Fuse to Emergency Pump Power Cable", phonetic:"/ɪˈmɜːrdʒənsi pʌmp fjuːz tuː ɪˈmɜːrdʒənsi pʌmp ˈpaʊər ˈkeɪbəl/", cn:"应急泵保险至应急泵电源线", desc:"连接应急泵保险和泵", words:[
+    { w:"Emergency", cn:"应急", phonetic:"/ɪˈmɜːrdʒənsi/" },
+    { w:"Pump", cn:"泵", phonetic:"/pʌmp/" },
+    { w:"Fuse", cn:"保险", phonetic:"/fjuːz/" },
+    { w:"to", cn:"至", phonetic:"/tuː/" },
+    { w:"Emergency", cn:"应急", phonetic:"/ɪˈmɜːrdʒənsi/" },
+    { w:"Pump", cn:"泵", phonetic:"/pʌmp/" },
+    { w:"Power", cn:"电源", phonetic:"/ˈpaʊər/" },
+    { w:"Cable", cn:"线", phonetic:"/ˈkeɪbəl/" }
+  ]},
+
+  { text:"Lead-acid Battery", phonetic:"/ˈlɛd ˈæsɪd ˈbætəri/", cn:"酸性蓄电池", desc:"常用汽车电池", words:[
+    { w:"Lead-acid", cn:"酸性", phonetic:"/ˈlɛd ˈæsɪd/" },
+    { w:"Battery", cn:"蓄电池", phonetic:"/ˈbætəri/" }
+  ]},
+
+  { text:"Fuse Bracket", phonetic:"/fjuːz ˈbrækɪt/", cn:"保险丝支架", desc:"用于固定熔断器", words:[
+    { w:"Fuse", cn:"保险丝", phonetic:"/fjuːz/" },
+    { w:"Bracket", cn:"支架", phonetic:"/ˈbrækɪt/" }
+  ]},
+
+  { text:"Fuse", phonetic:"/fjuːz/", cn:"熔断器", desc:"电路保护元件" },
+
+  { text:"Warning Light", phonetic:"/ˈwɔːrnɪŋ laɪt/", cn:"警示灯", desc:"提示异常状态", words:[
+    { w:"Warning", cn:"警示", phonetic:"/ˈwɔːrnɪŋ/" },
+    { w:"Light", cn:"灯", phonetic:"/laɪt/" }
+  ]},
+
+  { text:"Cable", phonetic:"/ˈkeɪbəl/", cn:"线束", desc:"用于电路连接" },
+
+  { text:"Angle Sensor", phonetic:"/ˈæŋɡəl ˈsɛnsər/", cn:"角度传感器", desc:"检测角度变化", words:[
+    { w:"Angle", cn:"角度", phonetic:"/ˈæŋɡəl/" },
+    { w:"Sensor", cn:"传感器", phonetic:"/ˈsɛnsər/" }
+  ]},
+
+  { text:"Horn", phonetic:"/hɔːrn/", cn:"喇叭", desc:"发出警示声音" },
+
+  { text:"Type A Battery Negative Terminal Assembly", phonetic:"/taɪp eɪ ˈbætəri ˈnɛɡətɪv ˈtɜːrmɪnl əˈsɛmbli/", cn:"A型蓄电池负极接头总成", desc:"连接电池负极的总成", words:[
+    { w:"Type A", cn:"A型", phonetic:"/taɪp eɪ/" },
+    { w:"Battery", cn:"蓄电池", phonetic:"/ˈbætəri/" },
+    { w:"Negative", cn:"负极", phonetic:"/ˈnɛɡətɪv/" },
+    { w:"Terminal", cn:"接头", phonetic:"/ˈtɜːrmɪnl/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+
+  { text:"Washer", phonetic:"/ˈwɑːʃər/", cn:"垫圈", desc:"用于分散压力" },
+
+  { text:"Spring Washer", phonetic:"/sprɪŋ ˈwɑːʃər/", cn:"弹簧垫圈", desc:"增加螺栓预紧力", words:[
+    { w:"Spring", cn:"弹簧", phonetic:"/sprɪŋ/" },
+    { w:"Washer", cn:"垫圈", phonetic:"/ˈwɑːʃər/" }
+  ]},
+
+  { text:"Screw", phonetic:"/skruː/", cn:"螺钉", desc:"用于固定零件" },
+
+  { text:"Nut", phonetic:"/nʌt/", cn:"螺母", desc:"与螺栓配合使用" },
+
+  { text:"Harness Clamp", phonetic:"/ˈhɑːrnɪs klæmp/", cn:"线夹", desc:"用于固定线束", words:[
+    { w:"Harness", cn:"线束", phonetic:"/ˈhɑːrnɪs/" },
+    { w:"Clamp", cn:"夹具", phonetic:"/klæmp/" }
+  ]},
+
+  { text:"Bolt", phonetic:"/boʊlt/", cn:"螺栓", desc:"用于连接零件" },
+
+  { text:"Rotary Switch", phonetic:"/ˈroʊtəri swɪtʃ/", cn:"旋钮开关", desc:"通过旋转控制电路", words:[
+    { w:"Rotary", cn:"旋钮", phonetic:"/ˈroʊtəri/" },
+    { w:"Switch", cn:"开关", phonetic:"/swɪtʃ/" }
+  ]},
+
+  { text:"Turntable Control Cable", phonetic:"/ˈtɜːrnˌteɪbl kənˈtroʊl ˈkeɪbəl/", cn:"转台控制线束", desc:"用于转台控制信号传输", words:[
+    { w:"Turntable", cn:"转台", phonetic:"/ˈtɜːrnˌteɪbl/" },
+    { w:"Control", cn:"控制", phonetic:"/kənˈtroʊl/" },
+    { w:"Cable", cn:"线束", phonetic:"/ˈkeɪbəl/" }
+  ]},
+
+  { text:"Turntable Control Box Assembly", phonetic:"/ˈtɜːrnˌteɪbl kənˈtroʊl bɑːks əˈsɛmbli/", cn:"转台控制箱总成", desc:"转台控制系统总成", words:[
+    { w:"Turntable", cn:"转台", phonetic:"/ˈtɜːrnˌteɪbl/" },
+    { w:"Control", cn:"控制", phonetic:"/kənˈtroʊl/" },
+    { w:"Box", cn:"箱", phonetic:"/bɑːks/" },
+    { w:"Assembly", cn:"总成", phonetic:"/əˈsɛmbli/" }
+  ]},
+
+  { text:"Zip Tie", phonetic:"/zɪp taɪ/", cn:"扎带", desc:"用于固定线束或轻型物件", words:[
+    { w:"Zip", cn:"扎", phonetic:"/zɪp/" },
+    { w:"Tie", cn:"带", phonetic:"/taɪ/" }
+  ]}
+];
+
+function speak(text){
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  speechSynthesis.speak(u);
+}
+
+function renderParts(){
+  const container = document.querySelector('.container');
+  parts.forEach(p=>{
+    const item = document.createElement('div');
+    item.className = 'item';
+    let wordsHtml = "";
+    if(p.words){
+      wordsHtml = p.words.map(w=>`
+        <span class="word btn" onclick="speak('${w.w}')">
+          🔊 ${w.w}
+          <span class="phonetic">${w.phonetic}</span>
+          <span class="small">${w.cn}</span>
+        </span>
+      `).join("");
+    }
+    item.innerHTML = `
+      <div class="title btn" onclick="speak('${p.text}')">
+        🔊 ${p.text}
+        <span class="phonetic">${p.phonetic}</span>
+        <span class="small">${p.cn}</span>
+      </div>
+      <div class="desc">${p.desc}</div>
+      ${wordsHtml}
+    `;
+    container.appendChild(item);
+  });
+}
+
+window.onload = renderParts;
+</script>
+</body>
+</html>
